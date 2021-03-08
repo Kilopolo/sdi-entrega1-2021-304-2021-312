@@ -1,11 +1,25 @@
 package com.uniovi.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name = "user")
 public class User {
-	
+	@Id
+	@GeneratedValue
+	private long id;
+	@Column(unique = true)
 	private String email;
 	private String name;
 	private String lastName;
 	private String password;
+	@Transient // propiedad que no se almacena e la tabla.
+	private String passwordConfirm;
 	private Double money;
 	private String role;
 	
@@ -18,6 +32,9 @@ public class User {
 		this.money = money;
 	}
 
+	public User() { 
+		
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -64,6 +81,11 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		return "User [email=" + email + ", name=" + name + ", lastName=" + lastName + "]";
 	}
 	
 	
