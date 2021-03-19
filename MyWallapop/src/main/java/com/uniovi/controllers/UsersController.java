@@ -37,6 +37,7 @@ public class UsersController {
 	
 	@Autowired
 	private HttpSession httpSession;
+	
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String signup(@Validated User user, BindingResult result) {
