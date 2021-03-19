@@ -19,6 +19,7 @@ public class User {
 	private String name;
 	private String lastName;
 	private String password;
+//	private String password2;
 	@Transient
 	private String passwordConfirm;
 	private Double money;
@@ -36,11 +37,21 @@ public class User {
 		this.email= email;
 		this.name= name;
 		this.lastName= lastName;
+		this.money = 100.0;
 	}
 	
 	
 
 	
+//	public String getPassword2() {
+//		return password2;
+//	}
+//	public void setPassword2(String password2) {
+//		this.password2 = password2;
+//	}
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -89,9 +100,6 @@ public class User {
 		this.role = role;
 	}
 
-	public void setPasswortdConfirm(String p) {
-		this.passwordConfirm = p;
-	}
 	public String getPasswordConfirm() {
 		return passwordConfirm;
 	}

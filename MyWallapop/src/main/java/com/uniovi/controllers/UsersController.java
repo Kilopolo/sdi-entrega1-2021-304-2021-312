@@ -42,14 +42,18 @@ public class UsersController {
 	//GESTION DE LOGIN/REGISTRO
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public String signup(@Validated User user, BindingResult result) {
+	public String signup(@ModelAttribute @Validated User user, BindingResult result) {
+		
+//		System.out.println(user.getEmail(),user.getPasswordConfirm());
+		
 		signUpFormValidator.validate(user, result);
 		if (result.hasErrors()) {
 			return "signup";
 		}
 		user.setRole(rolesService.getRoles()[0]);
+//		user.setMoney(100.0);
 		usersService.addUser(user);
-		securityService.autoLogin(user.getEmail(), user.getPassword());
+		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
 		return "redirect:home";
 	}
 	
@@ -76,7 +80,6 @@ public class UsersController {
 		User activeUser = usersService.getUserByEmail(email);
 		httpSession.setAttribute("activeUser",activeUser);
 
-		httpSession.setAttribute("activeUser", activeUser);
 		return "home";
 	}
 	

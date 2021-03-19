@@ -20,7 +20,7 @@ public class SignUpFormValidator implements Validator {
 		return User.class.equals(aClass);
 	}
 
-	
+	 
 	@Override
 	public void validate(Object target, Errors errors) {
 		User user = (User) target;
@@ -38,11 +38,11 @@ public class SignUpFormValidator implements Validator {
 		if (user.getPassword().length() < 5 || user.getPassword().length() > 24) {
 			errors.rejectValue("password", "Error.signup.password.length");
 		}
-		if (user.getPasswordConfirm()!=null) {
+		if (user.getPasswordConfirm()!=null) 
 			if (!user.getPasswordConfirm().equals(user.getPassword())) {
 				errors.rejectValue("passwordConfirm", "Error.signup.passwordConfirm.coincidence");
 			}
-		}
+		
 		
 	}
 }
