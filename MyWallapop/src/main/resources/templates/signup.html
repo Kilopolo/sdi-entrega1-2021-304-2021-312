@@ -48,7 +48,10 @@
 				<label class="control-label col-sm-2" for="passwordConfirm"
 					th:text="#{repeat.message}"></label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control" name="passwordConfirm" />
+					<input type="password" class="form-control" name="passwordConfirm" /><span
+						class="text-danger"
+						th:if="${#fields.hasErrors('passwordConfirm')}"
+						th:errors="*{passwordConfirm}" />
 
 				</div>
 			</div>
