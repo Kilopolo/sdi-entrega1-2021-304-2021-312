@@ -60,7 +60,6 @@ public class UsersController {
 	public String login(Model model) {
 		return "login";
 	}
-
 	
 
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
@@ -69,6 +68,7 @@ public class UsersController {
 		String email = auth.getName();
 		User activeUser = usersService.getUserByEmail(email);
 
+		httpSession.setAttribute("activeUser", activeUser);
 		return "home";
 	}
 }

@@ -19,7 +19,7 @@ public class User {
 	private String name;
 	private String lastName;
 	private String password;
-	@Transient // propiedad que no se almacena e la tabla.
+	@Transient
 	private String passwordConfirm;
 	private Double money;
 	private String role;
@@ -33,32 +33,13 @@ public class User {
 	 * @param lastName
 	 */
 	public User(String email, String name, String lastName) {
-		this(email,name,lastName,"123456");
+		this.email= email;
+		this.name= name;
+		this.lastName= lastName;
 	}
 	
-	/**
-	 * Uses "ROLE_USER" as default role and '100.0' as default money.
-	 * @param email
-	 * @param name
-	 * @param lastName
-	 * @param password
-	 */
-	public User(String email, String name, String lastName, String password) {
-		this(email,name,lastName,"default",100.0,"ROLE_USER");
-	}
+	
 
-
-
-	public User(String email, String name, String lastName, String password, Double money,
-			String role) {
-		super();
-		this.email = email;
-		this.name = name;
-		this.lastName = lastName;
-		this.password = password;
-		this.money = money;
-		this.role = role;
-	}
 	
 	public String getEmail() {
 		return email;

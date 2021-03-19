@@ -14,7 +14,7 @@ public class Offer {
 	
 	@Id
 	@GeneratedValue
-	private long id;
+	public long id;
 	@Column(unique = true)
 	private String title;
 	private String details;
@@ -25,14 +25,9 @@ public class Offer {
 	}
 	
 	public Offer(String title, String details, double amount) {
-		this( title,  details,  new Date(),  amount);
-	}
-	
-	public Offer(String title, String details, Date orderDate, double amount) {
-		super();
 		this.title = title;
 		this.details = details;
-		this.orderDate = orderDate;
+		this.orderDate = new Date();
 		this.amount = amount;
 	}
 

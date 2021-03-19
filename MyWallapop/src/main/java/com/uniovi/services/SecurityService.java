@@ -16,6 +16,7 @@ public class SecurityService {
 	private AuthenticationManager authenticationManager;
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(SecurityService.class);
 
 	public String findLoggedInEmail() {
