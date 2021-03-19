@@ -32,9 +32,10 @@
 					</ul></li>
 				
 				<li sec:authorize="isAuthenticated()">
-				<div class="glyphicon glyphicon-user">
+				<div >
 						<p style="margin-right: 15px; color: #FFFFFF" th:text="${#session.getAttribute('activeUser')}"   ></p>
-					</div></li>
+				</div>
+				</li>
 
 
 			</ul>

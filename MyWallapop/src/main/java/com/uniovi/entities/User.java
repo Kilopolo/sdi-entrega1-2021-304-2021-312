@@ -36,6 +36,7 @@ public class User {
 		this.email= email;
 		this.name= name;
 		this.lastName= lastName;
+		this.money=100.0;
 	}
 	
 	
