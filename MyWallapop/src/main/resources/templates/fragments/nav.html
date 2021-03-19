@@ -21,6 +21,15 @@
 						<li><a href="/user/add" th:text=#{addUser.message}></a></li>
 						<li><a href="/user/list" th:text=#{showUser.message}></a></li>
 					</ul></li>
+					
+				<li id="offers-menu" class="dropdown"><a
+					class="dropdown-toggle" data-toggle="dropdown" href="#"
+					th:text=#{manageOffers.message}> . <span class="caret"></span>
+				</a>
+					<ul class="dropdown-menu">
+						<li><a href="/offer/add" th:text=#{addOffers.message}></a></li>
+						<li><a href="/offer/list" th:text=#{showOffers.message}></a></li>
+					</ul></li>
 				
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -51,7 +60,8 @@
 					th:text="#{login.message}"> <span
 						class="glyphicon glyphicon-log-in"></span> 
 				</a></li>
-				<li><a href="/logout"> <span
+				<li><a href="/logout"
+				th:text="#{logout.message}"> <span
 						class="glyphicon glyphicon-log-out"></span> 
 				</a></li>
 			</ul>

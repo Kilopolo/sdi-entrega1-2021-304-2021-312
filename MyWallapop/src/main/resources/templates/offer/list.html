@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<!-- Barra de Navegación superior -->
+	<nav th:replace="fragments/nav" />
+
+	<div class="container">
+		<h2 th:text="#{offers.message}"></h2>
+
+		<div class="table-responsive">
+			<table class="table table-hover" th:fragment="tableOffers"
+				id="tableOffers">
+				<thead>
+					<tr>
+						<th class="col-md-1">id</th>
+						<th th:text="#{title.message}"></th>
+						<th th:text="#{details.message}"></th>
+						<th th:text="#{date.message}"></th>
+						<th th:text="#{amount.message}"></th>
+						<th class="col-md-1"></th>
+						<th class="col-md-1"></th>
+						<th class="col-md-1"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="offer : ${offerList}">
+						<td th:text="${offer.id}"></td>
+						<td th:text="${offer.title}"></td>
+						<td th:text="${offer.details}"></td>
+						<td th:text="${offer.orderDate}"></td>
+						<td th:text="${offer.amount}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<footer th:replace="fragments/footer" />
+
+</body>
+</html>
