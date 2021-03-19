@@ -12,15 +12,7 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li><a href="/">Home</a></li>
-				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#" th:text=#{manageMark.message}>
-						.<span class="caret"></span>
-				</a>
-					<ul class="dropdown-menu">
-						<li>
-						<li><a href="/mark/add" th:text=#{addMark.message}></a></li>
-						<li><a href="/mark/list" th:text=#{showMark.message}></a></li>
-					</ul></li>
+				
 				<li id="users-menu" class="dropdown"><a
 					class="dropdown-toggle" data-toggle="dropdown" href="#"
 					th:text=#{manageUsers.message}> . <span class="caret"></span>
@@ -30,8 +22,6 @@
 						<li><a href="/user/list" th:text=#{showUser.message}></a></li>
 					</ul></li>
 				
-				<li><a href="/prof/list" th:text=#{showProf.message}></a></li>
-				<li><a href="/prof/add" th:text=#{addProf.message}></a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a id="btnLanguage" href="

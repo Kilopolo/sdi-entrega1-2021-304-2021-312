@@ -23,13 +23,14 @@ public class User {
 	private Double money;
 	private String role;
 	
-	public User(String email, String name, String lastName, String password, Double money, String role) {
+	public User(String email, String name, String lastName, String password) {
 		super();
 		this.email = email;
 		this.name = name;
 		this.lastName = lastName;
 		this.password = password;
-		this.money = money;
+		this.role = "ROLE_USER";
+		this.money = 100.0;
 	}
 
 	public User() { 
@@ -83,6 +84,12 @@ public class User {
 		this.role = role;
 	}
 
+	public void setPasswortdConfirm(String p) {
+		this.passwordConfirm = p;
+	}
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
 	@Override
 	public String toString() {
 		return "User [email=" + email + ", name=" + name + ", lastName=" + lastName + "]";
