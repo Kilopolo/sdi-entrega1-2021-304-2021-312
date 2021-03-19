@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+
 @Entity
 @Table(name = "user")
 public class User {
@@ -23,19 +24,42 @@ public class User {
 	private Double money;
 	private String role;
 	
+	public User() { 	
+	}
+	/**
+	 * Uses "123456" as password, "ROLE_USER" as default role and '100.0' as default money.
+	 * @param email
+	 * @param name
+	 * @param lastName
+	 */
+	public User(String email, String name, String lastName) {
+		this(email,name,lastName,"123456");
+	}
+	
+	/**
+	 * Uses "ROLE_USER" as default role and '100.0' as default money.
+	 * @param email
+	 * @param name
+	 * @param lastName
+	 * @param password
+	 */
 	public User(String email, String name, String lastName, String password) {
+		this(email,name,lastName,"default",100.0,"ROLE_USER");
+	}
+
+
+
+	public User(String email, String name, String lastName, String password, Double money,
+			String role) {
 		super();
 		this.email = email;
 		this.name = name;
 		this.lastName = lastName;
 		this.password = password;
-		this.role = "ROLE_USER";
-		this.money = 100.0;
+		this.money = money;
+		this.role = role;
 	}
-
-	public User() { 
-		
-	}
+	
 	public String getEmail() {
 		return email;
 	}

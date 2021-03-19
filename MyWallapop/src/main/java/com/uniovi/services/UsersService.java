@@ -18,7 +18,6 @@ import com.uniovi.repositories.UsersRepository;
 
 @Service
 public class UsersService {
-
 	@Autowired
 	private UsersRepository usersRepository;
 
@@ -29,10 +28,10 @@ public class UsersService {
 	public void init() {
 	}
 
-	public List<User> getUsers(Pageable pageable) {
+	public Page<User> getUsers(Pageable pageable) {
 //		Page<User> users = new PageImpl<User>(new LinkedList<User>());
 
-		List<User> users = usersRepository.findAll(); // .forEach(users::add)
+		Page<User> users = usersRepository.findAll(pageable); // .forEach(users::add)
 		return users;
 	}
 
@@ -56,9 +55,20 @@ public class UsersService {
 		usersRepository.save(user);
 	}
 
+	public User getUserByEmail(String email) {
+		return usersRepository.findByEmail(email);
+	}
 
 	public void deleteUser(Long id) {
 		usersRepository.deleteById(id);
 	}
-	
+
+	public Page<User> searchUserByNameAndLastname(Pageable pageable, String searchText, User user) {
+		Page<User> users = new PageImpl<User>(new LinkedList<User>());
+		searchText = "%" + searchText + "%";
+		if (user.getRole().equals("ROLE_ADMIN")) {
+			users = usersRepository.searchUserByNameAndLastname(pageable, searchText, user);
+		}
+		return users;
+	}
 }
