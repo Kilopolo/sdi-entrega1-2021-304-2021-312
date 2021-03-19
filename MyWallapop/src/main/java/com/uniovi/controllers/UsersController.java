@@ -49,7 +49,7 @@ public class UsersController {
 		}
 		user.setRole(rolesService.getRoles()[0]);
 		usersService.addUser(user);
-		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
+		securityService.autoLogin(user.getEmail(), user.getPassword());
 		return "redirect:home";
 	}
 	
