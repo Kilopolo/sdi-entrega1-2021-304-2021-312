@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -38,6 +39,7 @@ public class UsersController {
 	@Autowired
 	private HttpSession httpSession;
 	
+	//GESTION DE LOGIN/REGISTRO
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String signup(@Validated User user, BindingResult result) {
@@ -54,6 +56,10 @@ public class UsersController {
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signup(Model model) {
 		model.addAttribute("user", new User());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String email = auth.getName();
+		User activeUser = usersService.getUserByEmail(email);
+		httpSession.setAttribute("activeUser",activeUser);
 		return "signup";
 	}
 
@@ -69,7 +75,26 @@ public class UsersController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String email = auth.getName();
 		User activeUser = usersService.getUserByEmail(email);
+		httpSession.setAttribute("activeUser",activeUser);
 
 		return "home";
 	}
+	
+	//GESTION DE USUARIOS
+	
+	@RequestMapping(value = "/user/add")
+	public String getUser(Model model) {
+		//TODO comprobar que no haga falta la userlist
+//		model.addAttribute("usersList", usersService.getUsers());
+		model.addAttribute("rolesList", rolesService.getRoles());
+		return "user/add";
+	}
+
+	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
+	public String setUser(@ModelAttribute User user) {
+		usersService.addUser(user);
+		return "redirect:/user/list";
+	}
+	
+	
 }
