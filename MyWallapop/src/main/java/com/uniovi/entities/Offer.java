@@ -14,11 +14,12 @@ public class Offer {
 	
 	@Id
 	@GeneratedValue
-	public long id;
+	private long id;
 	@Column(unique = true)
 	private String title;
 	private String details;
 	private Date orderDate;
+	private boolean available;
 	private double amount;
 	
 	public Offer() {
@@ -29,6 +30,19 @@ public class Offer {
 		this.details = details;
 		this.orderDate = new Date();
 		this.amount = amount;
+		this.available = true;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	
+	public boolean getAvailable() {
+		return available;
+	}
+	
+	public void setAvailable(boolean b) {
+		this.available= b;
 	}
 
 	public String getTitle() {
