@@ -58,7 +58,7 @@ public class UsersController {
 			return "signup";
 		}
 		user.setRole(rolesService.getRoles()[0]);
-//		user.setMoney(100.0);
+		user.setMoney(100.0);
 		usersService.addUser(user);
 		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
 		return "redirect:user/home";

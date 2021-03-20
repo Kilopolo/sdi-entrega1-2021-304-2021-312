@@ -11,7 +11,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-
 @Entity
 @Table(name = "user")
 public class User {
@@ -25,6 +24,8 @@ public class User {
 	private String password;
 	@Transient
 	private String passwordConfirm;
+	@Transient
+	private boolean enoughMoney = true;
 	private Double money;
 	private String role;
 	@Transient
@@ -32,26 +33,27 @@ public class User {
 	
 	@OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
 	private Set<Offer> offers;
-	
-	public User() { 	
+
+	public User() {
 	}
+
 	/**
-	 * Uses "123456" as password, "ROLE_USER" as default role and '100.0' as default money.
+	 * Uses "123456" as password, "ROLE_USER" as default role and '100.0' as default
+	 * money.
+	 * 
 	 * @param email
 	 * @param name
 	 * @param lastName
 	 */
 	public User(String email, String name, String lastName) {
-		this.email= email;
-		this.name= name;
-		this.lastName= lastName;
-		this.money = 100.0;
+		this.email = email;
+		this.name = name;
+		this.lastName = lastName;
 	}
-	
 	
 
 	
-public boolean isSelected() {
+	public boolean isSelected() {
 		return selected;
 	}
 	public void setSelected(boolean selected) {
@@ -64,6 +66,20 @@ public boolean isSelected() {
 		this.offers = offers;
 	}
 	//	public String getPassword2() {
+	public boolean getEnoughMoney() {
+		return enoughMoney;
+	}
+
+	public void setEnoughMoney(boolean enoughMoney) {
+		this.enoughMoney = enoughMoney;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	// public String getPassword2() {
 //		return password2;
 //	}
 //	public void setPassword2(String password2) {
@@ -72,9 +88,11 @@ public boolean isSelected() {
 	public void setPasswordConfirm(String passwordConfirm) {
 		this.passwordConfirm = passwordConfirm;
 	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -126,12 +144,10 @@ public boolean isSelected() {
 	public String getPasswordConfirm() {
 		return passwordConfirm;
 	}
+
 	@Override
 	public String toString() {
-		return "" + email + ", " + money + " euros";
+		return "" + email + ".	[" + money + " €]";
 	}
 
-	
-	
-	
 }
