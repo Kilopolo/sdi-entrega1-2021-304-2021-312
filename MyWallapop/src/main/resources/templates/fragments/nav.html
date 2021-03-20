@@ -29,10 +29,13 @@
 				</a>
 					<ul class="dropdown-menu">
 						<li><a href="/offer/add" th:text=#{addOffers.message}></a></li>
+						<li><a href="/offer/ownList" th:text=#{ownOffers.message}></a></li>
 						<li><a href="/offer/list" th:text=#{showOffers.message}></a></li>
 					</ul></li>
 				
-				<li sec:authorize="isAuthenticated()"><a sec:authorize="hasRole('ROLE_USER')" style="margin-right: 15px; color: #FFFFFF" th:text="${#session.getAttribute('activeUser')}" >Home</a></li>
+				<li sec:authorize="isAuthenticated()"><a sec:authorize="hasRole('ROLE_USER')"
+				 style="margin-right: 15px; color: #FFFFFF" th:text="${#session.getAttribute('activeUser')}" >
+				</a></li>
 				
 
 

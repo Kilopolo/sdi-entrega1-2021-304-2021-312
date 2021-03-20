@@ -31,4 +31,8 @@ public class OfferService {
 	public void deleteOffer(Long id) {
 		offersRepository.deleteById(id);
 	}
+	
+	public void setOfferAvailable(boolean av, Long id) {
+		offersRepository.updateAvailable(av, id);
+	}
 }
