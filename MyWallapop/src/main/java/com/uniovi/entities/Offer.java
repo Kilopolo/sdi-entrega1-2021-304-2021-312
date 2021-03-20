@@ -88,6 +88,9 @@ public class Offer {
 		this.orderDate = orderDate;
 	}
 
+	public String getDate() {
+		return orderDate.toString();
+	}
 	public double getAmount() {
 		return amount;
 	}

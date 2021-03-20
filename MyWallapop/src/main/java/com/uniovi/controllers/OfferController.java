@@ -1,5 +1,8 @@
 package com.uniovi.controllers;
 
+
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +10,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +21,7 @@ import com.uniovi.entities.Offer;
 import com.uniovi.entities.User;
 import com.uniovi.services.OfferService;
 import com.uniovi.services.UsersService;
+import com.uniovi.validators.AddOfferFormValidator;
 
 @Controller
 public class OfferController {
@@ -25,6 +31,9 @@ public class OfferController {
 	
 	@Autowired
 	UsersService usersService;
+	
+	@Autowired
+	AddOfferFormValidator aofv;
 	
 	@Autowired
 	private HttpSession httpSession;
@@ -58,6 +67,7 @@ public class OfferController {
 	@RequestMapping(value = "/offer/add")
 	public String getOffer(Model model){
 		model.addAttribute("userList", usersService.getUsers());
+		model.addAttribute("offer",new Offer());
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String email = auth.getName();
 		User activeUser = usersService.getUserByEmail(email);
@@ -65,8 +75,19 @@ public class OfferController {
 		return "offer/add";
 	}
 	
+	
 	@RequestMapping(value = "/offer/add", method = RequestMethod.POST)
-	public String setOffer(@ModelAttribute Offer offer){
+	public String setOffer(Model model, @Validated Offer offer, BindingResult result){
+		aofv.validate(offer, result);
+		if(result.hasErrors()) {
+			model.addAttribute("userList", usersService.getUsers());
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			String email = auth.getName();
+			User activeUser = usersService.getUserByEmail(email);
+			httpSession.setAttribute("activeUser",activeUser);
+			return "/offer/add";
+		}
+		offer.setOrderDate(new Date());
 		offersService.addOffer(offer);
 		return "redirect:/offer/ownList";
 	}
