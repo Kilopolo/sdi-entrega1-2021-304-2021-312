@@ -1,5 +1,8 @@
 package com.uniovi.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +108,7 @@ public class UsersController {
 	
 	@RequestMapping(value = "/user/list")
 	public String getLista(Model model) {
+		List<User> listaSinAdmin = new ArrayList<User>();
 		model.addAttribute("usersList", usersService.getUsers());
 		return "user/list";
 	}
