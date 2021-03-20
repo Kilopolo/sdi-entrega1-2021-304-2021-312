@@ -17,9 +17,19 @@ public class InsertSampleDataService {
 
 	@PostConstruct
 	public void init() {
-
+		/*
+		 * Sólo existirá un usuario administrador en el sistema con email
+		 * “admin@email.com” y contraseña “admin”
+		 */
+		//TODO ELIMINAR AL TERMINAR LA APLICACION
 		insertDataEasyAccess();
 
+		User admin = new User("admin@email.com", "AdministradorPoggers", "Bonk");
+		admin.setPassword("admin");
+		admin.setRole(rolesService.getRoles()[1]);
+		
+		usersService.addUser(admin);
+		
 		User user1 = new User("99999990A@wywallapop.com", "Pedro", "Díaz");
 		user1.setPassword("123456");
 		user1.setRole(rolesService.getRoles()[0]);
@@ -42,11 +52,11 @@ public class InsertSampleDataService {
 
 		User user6 = new User("99999988F@wywallapop.com", "Edward", "Núñez");
 		user6.setPassword("123456");
-		user6.setRole(rolesService.getRoles()[0]);
+		user6.setRole(rolesService.getRoles()[0]);	
 
-		User user7 = new User("admin@wywallapop.com", "Antonio", "Suarez");
+		User user7 = new User("user@wywallapop.com", "Antonio", "Suarez");
 		user7.setPassword("123456");
-		user7.setRole(rolesService.getRoles()[1]);
+		user7.setRole(rolesService.getRoles()[0]);
 
 		User user8 = new User("user@wywallapop.com", "Pablo", "Diaz");
 		user8.setPassword("123456");
