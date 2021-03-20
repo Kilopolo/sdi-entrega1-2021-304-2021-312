@@ -86,6 +86,33 @@ public class MyWallapopApplicationTests {
 //	WebElement we = driver.getTitle();
 
 	}
+	
+//	@Test
+//	public void Prueba00RegistrosInvalidos() {
+//		// Vamos al formulario de registro
+//		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
+//		// Rellenamos el formulario.
+//		PO_RegisterView.fillForm(driver, "99999990A@wywallapop.com", "Pedro", "Díaz", "123456", "123456");
+//		PO_View.getP();
+//		// COmprobamos el error de email repetido.
+//		PO_RegisterView.checkKey(driver, "Error.signup.email.duplicate", PO_Properties.getSPANISH());
+//		// Rellenamos el formulario.
+//		PO_RegisterView.fillForm(driver, "abc@def.gg", "aaa", "abcdef", "123456", "123456");
+//		// COmprobamos el error de Nombre corto .
+//		PO_RegisterView.checkKey(driver, "Error.signup.name.length", PO_Properties.getSPANISH());
+//		// Rellenamos el formulario.
+//		PO_RegisterView.fillForm(driver, "abc@def.gg", "abcdef", "sss", "123456", "123456");
+//		// COmprobamos el error de Apellido corto .
+//		PO_RegisterView.checkKey(driver, "Error.signup.lastName.length", PO_Properties.getSPANISH());
+//		// Rellenamos el formulario.
+//		PO_RegisterView.fillForm(driver, "abc@def.gg", "Pedro", "Pedro", "12", "12");
+//		// COmprobamos el error de contrasenya corta corto .
+//		PO_RegisterView.checkKey(driver, "Error.signup.password.length", PO_Properties.getSPANISH());
+//		// Rellenamos el formulario.
+//		PO_RegisterView.fillForm(driver, "abc@def.gg", "Pedro", "Pedro", "111111", "222222");
+//		// COmprobamos el error de paswordConfirm diferente a pasword .
+//		PO_RegisterView.checkKey(driver, "Error.signup.passwordConfirm.coincidence", PO_Properties.getSPANISH());
+//	}
 
 //----------------OBLIGATORIOS------------------
 
@@ -111,26 +138,12 @@ public class MyWallapopApplicationTests {
 		// Vamos al formulario de registro
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
 		// Rellenamos el formulario.
-		PO_RegisterView.fillForm(driver, "99999990A@wywallapop.com", "Pedro", "Díaz", "123456", "123456");
+		PO_RegisterView.fillForm(driver, "", "", "", "", "");
 		PO_View.getP();
 		// COmprobamos el error de email repetido.
-		PO_RegisterView.checkKey(driver, "Error.signup.email.duplicate", PO_Properties.getSPANISH());
-		// Rellenamos el formulario.
-		PO_RegisterView.fillForm(driver, "abc@def.gg", "aaa", "abcdef", "123456", "123456");
-		// COmprobamos el error de Nombre corto .
-		PO_RegisterView.checkKey(driver, "Error.signup.name.length", PO_Properties.getSPANISH());
-		// Rellenamos el formulario.
-		PO_RegisterView.fillForm(driver, "abc@def.gg", "abcdef", "sss", "123456", "123456");
-		// COmprobamos el error de Apellido corto .
-		PO_RegisterView.checkKey(driver, "Error.signup.lastName.length", PO_Properties.getSPANISH());
-		// Rellenamos el formulario.
-		PO_RegisterView.fillForm(driver, "abc@def.gg", "Pedro", "Pedro", "12", "12");
-		// COmprobamos el error de contrasenya corta corto .
-		PO_RegisterView.checkKey(driver, "Error.signup.password.length", PO_Properties.getSPANISH());
-		// Rellenamos el formulario.
-		PO_RegisterView.fillForm(driver, "abc@def.gg", "Pedro", "Pedro", "111111", "222222");
-		// COmprobamos el error de paswordConfirm diferente a pasword .
-		PO_RegisterView.checkKey(driver, "Error.signup.passwordConfirm.coincidence", PO_Properties.getSPANISH());
+		PO_RegisterView.checkKey(driver, "signup.message", PO_Properties.getSPANISH());
+
+
 	}
 
 	// TODO [Prueba3]
@@ -139,7 +152,13 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba03() {
-
+		// Vamos al formulario de registro
+		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");		
+		// Rellenamos el formulario.
+		PO_RegisterView.fillForm(driver, "abc@def.gg", "Pedro", "Pedro", "111111", "222222");
+		PO_View.getP();
+		// COmprobamos el error de paswordConfirm diferente a pasword .
+		PO_RegisterView.checkKey(driver, "Error.signup.passwordConfirm.coincidence", PO_Properties.getSPANISH());
 	}
 
 	// TODO [Prueba4]
@@ -148,7 +167,15 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba04() {
-
+		
+		// Vamos al formulario de registro
+		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
+		// Rellenamos el formulario.
+		PO_RegisterView.fillForm(driver, "99999990A@wywallapop.com", "Pedro", "Díaz", "123456", "123456");
+		PO_View.getP();
+		// COmprobamos el error de email repetido.
+		PO_RegisterView.checkKey(driver, "Error.signup.email.duplicate", PO_Properties.getSPANISH());
+		
 	}// TODO [Prueba5]
 
 	/**
