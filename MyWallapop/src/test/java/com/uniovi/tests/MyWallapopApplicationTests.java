@@ -20,6 +20,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.uniovi.tests.pageobjects.PO_HomeView;
+import com.uniovi.tests.pageobjects.PO_PrivateView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
 import com.uniovi.tests.pageobjects.PO_View;
@@ -146,7 +147,7 @@ public class MyWallapopApplicationTests {
 
 	}
 
-	// TODO [Prueba3]
+
 	/**
 	 * Registro de Usuario con datos inválidos (repetición de contraseña inválida).
 	 */
@@ -161,7 +162,7 @@ public class MyWallapopApplicationTests {
 		PO_RegisterView.checkKey(driver, "Error.signup.passwordConfirm.coincidence", PO_Properties.getSPANISH());
 	}
 
-	// TODO [Prueba4]
+
 	/**
 	 * Registro de Usuario con datos inválidos (email existente).
 	 */
@@ -183,6 +184,7 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba05() {
+		PO_PrivateView.login(driver, "admin@wywallapop.com", "123456", "Esta es la parte privada de la web");
 
 	}// TODO [Prueba6]
 
@@ -191,7 +193,7 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba06() {
-
+		PO_PrivateView.login(driver, "user@wywallapop.com", "123456", "Esta es la parte privada de la web");
 	}// TODO [Prueba7]
 
 	/**

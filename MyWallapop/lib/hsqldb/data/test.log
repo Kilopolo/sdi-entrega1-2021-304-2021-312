@@ -213,3 +213,236 @@ COMMIT
 INSERT INTO USER VALUES(9,'usario@prueba.com','Apellido',NULL,'Nombre','$2a$10$tBUyQzM1mGH0vFkMFnsY7uBhDC39lKHo7t7ALnlsBf2VZdU/NAHMm','ROLE_USER')
 ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 10
 COMMIT
+/*C53*/SET SCHEMA PUBLIC
+drop table if exists offer CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table offer (id bigint not null, amount double not null, details varchar(255), order_date timestamp, title varchar(255), primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), money double, name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table offer add constraint UK_1mn5fdi42uj7kjhxtwkey3oxr unique (title)
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+/*C43*/DISCONNECT
+/*C53*/DISCONNECT
+/*C54*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C55*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C48*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C44*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C45*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C56*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C57*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C47*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C50*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C46*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C49*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C51*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C52*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C58*/SET SCHEMA PUBLIC
+drop table if exists offer CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table offer (id bigint not null, amount double not null, details varchar(255), order_date timestamp, title varchar(255), primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), money double, name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table offer add constraint UK_1mn5fdi42uj7kjhxtwkey3oxr unique (title)
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+INSERT INTO USER VALUES(1,'user','user',100.0E0,'user','$2a$10$9QprF.qG7Tec98CFlM4hau9gTclcBH8oeSK2OfPDoQseCYcIDPvBS','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'admin','Admin',100.0E0,'Admin','$2a$10$zGvsJ8sh/lT4U5lNY7HvGeVSztcU1TrPk971LHcbyCn5GTyLjfdVK','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+DISCONNECT
+/*C59*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C60*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C61*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C62*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C63*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C64*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C65*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C66*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C67*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C68*/SET SCHEMA PUBLIC
+drop table if exists offer CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table offer (id bigint not null, amount double not null, details varchar(255), order_date timestamp, title varchar(255), primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), money double, name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table offer add constraint UK_1mn5fdi42uj7kjhxtwkey3oxr unique (title)
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+INSERT INTO USER VALUES(1,'user','user',100.0E0,'user','$2a$10$b9TNlBQuSaurV38W.U7fDuSC2M4/WaBBPZVW.RZVl9cypsuM7HFWi','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'admin','Admin',100.0E0,'Admin','$2a$10$g/Gf0UUEcYTUi7RJheGuOeUiN.rjmE4U9a799zIy1ygCtcvJF5bPi','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+DISCONNECT
+/*C69*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C70*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C71*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C72*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C73*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C74*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C75*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C76*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C77*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C78*/SET SCHEMA PUBLIC
+drop table if exists offer CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table offer (id bigint not null, amount double not null, details varchar(255), order_date timestamp, title varchar(255), primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), money double, name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table offer add constraint UK_1mn5fdi42uj7kjhxtwkey3oxr unique (title)
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+INSERT INTO USER VALUES(1,'user','user',100.0E0,'user','$2a$10$xygDa8ti4smHNIckljP53eHjU.UOsuhPVJaaZW.OjxFn8fBqbOSfG','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'admin','Admin',100.0E0,'Admin','$2a$10$1qLmhm1P2jv9nWMXyxw2K.ZNQZg05ZGCT7oYNleaXXI2wwEQWCsVu','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+DISCONNECT
+/*C79*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C80*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C81*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C82*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C83*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C84*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C85*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C86*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C87*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C88*/SET SCHEMA PUBLIC
+drop table if exists offer CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table offer (id bigint not null, amount double not null, details varchar(255), order_date timestamp, title varchar(255), primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), money double, name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table offer add constraint UK_1mn5fdi42uj7kjhxtwkey3oxr unique (title)
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+INSERT INTO USER VALUES(1,'user','user',100.0E0,'user','$2a$10$gWv6birEaE93FFAn35vf9OVH7eNl1g5EX7OtN4zFqOGo06pcM96Da','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'admin','Admin',100.0E0,'Admin','$2a$10$3UYPVZCvl0UKFoXpz4js9.zw.4vyQX0gMgZtRqjcObK6vsn1IJF7C','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'99999990A@wywallapop.com','D\u00edaz',100.0E0,'Pedro','$2a$10$ZwrpqEM9Zd0GHtl27KXH0ufcp2YccqLEfZYoeMbbcJDJvnuwa/P.G','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO USER VALUES(4,'99999991B@wywallapop.com','N\u00fa\u00f1ez',100.0E0,'Lucas','$2a$10$qEEPngCQKyo2Vglt.XwVSevzROo4RK/3mqVi/RTbiO9sqg.CWBjoC','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO USER VALUES(5,'99999992C@wywallapop.com','Rodr\u00edguez',100.0E0,'Mar\u00eda','$2a$10$4fFp7Knx0ecszjFe9q.76OmJCo12lqr1Jgio3zki7.IE3DN5BFrQW','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO USER VALUES(6,'99999993D@wywallapop.com','Almonte',100.0E0,'Marta','$2a$10$3vCbWFomBbiEWbir89JMJ.8jq5eCENRkDeRC9WiSKsqgUs5X4aiEy','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO USER VALUES(7,'99999977E@wywallapop.com','Valdes',100.0E0,'Pelayo','$2a$10$925.H.7vR29kTlGo8O3iiOC4yu12WO8hzio6pFSaI6/Vq035FC6rm','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO USER VALUES(8,'99999988F@wywallapop.com','N\u00fa\u00f1ez',100.0E0,'Edward','$2a$10$tfZ2hCT5JYvqpd6ztO4jFewVIQoY1buT0qOTKcRBn4wYn4YRlevQu','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
+/*C89*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C90*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C88*/DISCONNECT
+/*C95*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C96*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C91*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C93*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C94*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C92*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C97*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C98*/SET SCHEMA PUBLIC
+drop table if exists offer CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table offer (id bigint not null, amount double not null, details varchar(255), order_date timestamp, title varchar(255), primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), money double, name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table offer add constraint UK_1mn5fdi42uj7kjhxtwkey3oxr unique (title)
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+INSERT INTO USER VALUES(1,'user','user',100.0E0,'user','$2a$10$3Gtix73vj0AjLT2jWOJgw.oC5OMSX8Yt02fMsmM4gHJQEhe7ioqXa','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'admin','Admin',100.0E0,'Admin','$2a$10$8HonghWznd00Dq4MRMD35uxU0HGxIkoj3oZwNbDMtIrPl5pW7.92W','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'99999990A@wywallapop.com','D\u00edaz',100.0E0,'Pedro','$2a$10$hKwVQBbP654qlhWAMDJUIOAV2bMXOF.9moOH802P3F6URqVo9GhIi','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO USER VALUES(4,'99999991B@wywallapop.com','N\u00fa\u00f1ez',100.0E0,'Lucas','$2a$10$doZT.krVpr9/85Rway8q3.x73MsMHGu33QHHBUR69S63CcmUWHqQ.','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO USER VALUES(5,'99999992C@wywallapop.com','Rodr\u00edguez',100.0E0,'Mar\u00eda','$2a$10$ppxahjWhKkR6P1.cxySeCePz7NfMI5ePEUg1c7GAj9WYNqAS0pnXS','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO USER VALUES(6,'99999993D@wywallapop.com','Almonte',100.0E0,'Marta','$2a$10$DJtE8DXwuQkZS6UOO23a9updw4Gak6RDrrZFETdL9aEP3bsR9HImq','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO USER VALUES(7,'99999977E@wywallapop.com','Valdes',100.0E0,'Pelayo','$2a$10$U8.HXl1zv.DKA2ogM5UCSOTGiNsNTCsB0BqJnXsYTDPj7O3YZXsV.','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO USER VALUES(8,'99999988F@wywallapop.com','N\u00fa\u00f1ez',100.0E0,'Edward','$2a$10$RcsrrNFYuJ6dpTzSijjgTeU2XM3XYe5wpAq.In0Oloub9GVnQ0Ayy','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
+INSERT INTO USER VALUES(9,'admin@wywallapop.com','Suarez',100.0E0,'Antonio','$2a$10$iaryoLfUBskoCIspNiXh7O8ntQp2VTZk0iofAQt.NyB2jpvCaAt8K','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 10
+COMMIT
+INSERT INTO USER VALUES(10,'user@wywallapop.com','Diaz',100.0E0,'Pablo','$2a$10$8bIhqN.DjM5za12C1SujUukAI2oqHvk4zkMr1XDh4cy17fwPeFVtu','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 11
+COMMIT
+INSERT INTO USER VALUES(11,'usario@prueba.com','Apellido',NULL,'Nombre','$2a$10$KnAJVwBkWgvEPkpMV1g//OtDzsq1i.9uXNiaAXu1ewuvNoj69oEGy','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 12
+COMMIT
