@@ -31,4 +31,18 @@ public class PO_RegisterView extends PO_NavView {
 		By boton = By.className("btn");
 		driver.findElement(boton).click();
 	}
+	
+	
+	/**
+	 * @param email
+	 * @param password
+	 */
+	public static  void registerUser(WebDriver driver, String email, String password) {
+		// Vamos al formulario de registro
+		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
+		// Rellenamos el formulario.
+		PO_RegisterView.fillForm(driver, email , "Nombre", "Apellido", password , password);
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Esta es la parte privada de la web");
+	}
 }
