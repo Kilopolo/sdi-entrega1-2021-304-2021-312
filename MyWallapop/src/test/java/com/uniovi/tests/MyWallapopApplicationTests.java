@@ -22,6 +22,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.uniovi.tests.pageobjects.PO_GestionarOfertasView;
 import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_PrivateView;
@@ -57,7 +58,7 @@ public class MyWallapopApplicationTests {
 
 	private void navigateUrl(String URL, String pag) {
 		driver.navigate().to(URL + pag);
-		new WebDriverWait(driver, 2);
+//		new WebDriverWait(driver, 2);
 	}
 
 	// Después de cada prueba se borran las cookies del navegador
@@ -128,13 +129,13 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba01() {
-		// Vamos al formulario de registro
-		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		// Rellenamos el formulario.
-		PO_RegisterView.fillForm(driver, "usario@prueba.com", "Nombre", "Apellido", "123456", "123456");
-		// Comprobamos que entramos en la sección privada
-		PO_View.checkElement(driver, "text", "Esta es la parte privada de la web");
+		String email = "usario@prueba.com";
+		String password = "123456";
+		
+		PO_RegisterView.registerUser(driver, email, password);
 	}
+
+	
 
 	/**
 	 * Registro de Usuario con datos inválidos (email vacío, nombre vacío, apellidos
@@ -354,6 +355,19 @@ public class MyWallapopApplicationTests {
 	@Test
 	public void Prueba16() {
 
+		String email = "usario@prueba.com";
+		String password = "123456";
+		//registro un usuario porque lo borramos en pruebas anteriores
+		PO_RegisterView.registerUser(driver, email, password);
+		driver.manage().deleteAllCookies();
+		navigateUrl(URL, "");
+		
+		//accedo al usuario recien creado y a sus ofertas add
+		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/add");
+		
+		
+		
+		
 	}// TODO [Prueba17]
 
 	/**
@@ -373,6 +387,11 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba18() {
+		String email = "usario@prueba.com";
+		String password = "123456";
+		//accedo al usuario y a sus ofertas list
+		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/list");
+		
 
 	}// TODO [Prueba19]
 
