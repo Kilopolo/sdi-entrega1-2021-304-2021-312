@@ -28,6 +28,7 @@ import com.uniovi.tests.pageobjects.PO_PrivateView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
 import com.uniovi.tests.pageobjects.PO_View;
+import com.uniovi.tests.util.SeleniumUtils;
 
 //Ordenamos las pruebas por el nombre del método
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -283,9 +284,8 @@ public class MyWallapopApplicationTests {
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(busqueda)));
 
 		assertTrue(resultado);
-//		List<WebElement> elementos = driver.findElements(By.xpath(xpath));
 
-	}// TODO [Prueba12]
+	}
 
 	/**
 	 * Mostrar el listado de usuarios y comprobar que se muestran todos los que
@@ -293,6 +293,28 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba12() {
+		
+		PO_PrivateView.login(driver, "admin@email.com", "admin", "Esta es la parte privada de la web");
+		
+		int locale = PO_Properties.getSPANISH();
+
+		String text = "users-menu";
+		String busqueda = "//li[contains(@id,'"+ text +"')]/a";
+		
+		// Pinchamos en la opción de menu de Gestionar Usuarios:
+		List<WebElement> listaMenuGestUsu = PO_View.checkElement(driver, "free", busqueda);
+		listaMenuGestUsu.get(0).click();
+		// Esperamos a aparezca la opción de ver usuarios
+		listaMenuGestUsu = PO_View.checkElement(driver, "free", "//a[contains(@href, 'user/list')]");
+		// Pinchamos en Ver Usuarios
+		listaMenuGestUsu.get(0).click();
+		
+		// Contamos el número de filas de notas
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
+				PO_View.getTimeout());
+//		CUIDADO AL AÑADIR MAS USUARIOS EN PRUEBAS ANTERIORES
+		assertTrue(elementos.size() == 10);
+
 
 	}// TODO [Prueba13]
 
@@ -302,6 +324,8 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba13() {
+		
+		
 
 	}// TODO [Prueba14]
 
