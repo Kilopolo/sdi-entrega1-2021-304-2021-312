@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -113,5 +114,16 @@ public class UsersController {
 		return "redirect:/user/list";
 	}
 	
+	@RequestMapping("/user/delete/{id}")
+	public String deleteUser(@PathVariable Long id) {
+		usersService.deleteUser(id);
+		return "redirect:/user/list";
+	}
+	
+	@RequestMapping(value = "/user/list")
+	public String getLista(Model model) {
+		model.addAttribute("usersList", usersService.getUsers());
+		return "user/list";
+	}
 	
 }

@@ -52,6 +52,9 @@ public class User {
 	public void setPasswordConfirm(String passwordConfirm) {
 		this.passwordConfirm = passwordConfirm;
 	}
+	public Long getId() {
+		return id;
+	}
 	public String getEmail() {
 		return email;
 	}
