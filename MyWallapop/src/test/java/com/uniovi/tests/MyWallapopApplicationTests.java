@@ -85,7 +85,7 @@ public class MyWallapopApplicationTests {
 	 * Registro de Usuario con datos válidos.
 	 */
 	@Test
-	public void Prueba1() {
+	public void Prueba01() {
 
 	}
 
@@ -97,7 +97,7 @@ public class MyWallapopApplicationTests {
 	 * vacíos).
 	 */
 	@Test
-	public void Prueba2() {
+	public void Prueba02() {
 
 	}
 
@@ -107,7 +107,7 @@ public class MyWallapopApplicationTests {
 	 * 
 	 */
 	@Test
-	public void Prueba3() {
+	public void Prueba03() {
 
 	}
 
@@ -116,7 +116,7 @@ public class MyWallapopApplicationTests {
 	 * 
 	 */
 	@Test
-	public void Prueba4() {
+	public void Prueba04() {
 
 	}// TODO [Prueba5] Inicio de sesión con datos válidos (administrador).
 
@@ -124,7 +124,7 @@ public class MyWallapopApplicationTests {
 	 * 
 	 */
 	@Test
-	public void Prueba5() {
+	public void Prueba05() {
 
 	}// TODO [Prueba6] Inicio de sesión con datos válidos (usuario estándar).
 
@@ -132,7 +132,7 @@ public class MyWallapopApplicationTests {
 	 * 
 	 */
 	@Test
-	public void Prueba6() {
+	public void Prueba06() {
 
 	}// TODO [Prueba7] Inicio de sesión con datos inválidos (usuario estándar, campo
 		// email y contraseña vacíos).
@@ -141,7 +141,7 @@ public class MyWallapopApplicationTests {
 	 * 
 	 */
 	@Test
-	public void Prueba7() {
+	public void Prueba07() {
 
 	}// TODO [Prueba8] Inicio de sesión con datos válidos (usuario estándar, email
 		// existente, pero contraseña incorrecta).
@@ -150,7 +150,7 @@ public class MyWallapopApplicationTests {
 	 * 
 	 */
 	@Test
-	public void Prueba8() {
+	public void Prueba08() {
 
 	}// TODO [Prueba9] Inicio de sesión con datos inválidos (usuario estándar, email
 		// no existente en la aplicación).
@@ -159,7 +159,7 @@ public class MyWallapopApplicationTests {
 	 * 
 	 */
 	@Test
-	public void Prueba9() {
+	public void Prueba09() {
 
 	}// TODO [Prueba10] Hacer click en la opción de salir de sesión y comprobar que
 		// se redirige a la página de inicio de sesión (Login).
