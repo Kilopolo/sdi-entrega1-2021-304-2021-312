@@ -27,6 +27,7 @@ import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_PrivateView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
+import com.uniovi.tests.pageobjects.PO_UserListView;
 import com.uniovi.tests.pageobjects.PO_View;
 import com.uniovi.tests.util.SeleniumUtils;
 
@@ -287,6 +288,8 @@ public class MyWallapopApplicationTests {
 
 	}
 
+
+	
 	/**
 	 * Mostrar el listado de usuarios y comprobar que se muestran todos los que
 	 * existen en el sistema.
@@ -294,20 +297,7 @@ public class MyWallapopApplicationTests {
 	@Test
 	public void Prueba12() {
 		
-		PO_PrivateView.login(driver, "admin@email.com", "admin", "Esta es la parte privada de la web");
-		
-		int locale = PO_Properties.getSPANISH();
-
-		String text = "users-menu";
-		String busqueda = "//li[contains(@id,'"+ text +"')]/a";
-		
-		// Pinchamos en la opción de menu de Gestionar Usuarios:
-		List<WebElement> listaMenuGestUsu = PO_View.checkElement(driver, "free", busqueda);
-		listaMenuGestUsu.get(0).click();
-		// Esperamos a aparezca la opción de ver usuarios
-		listaMenuGestUsu = PO_View.checkElement(driver, "free", "//a[contains(@href, 'user/list')]");
-		// Pinchamos en Ver Usuarios
-		listaMenuGestUsu.get(0).click();
+		PO_UserListView.accesoUserList(driver);
 		
 		// Contamos el número de filas de notas
 		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
@@ -316,7 +306,9 @@ public class MyWallapopApplicationTests {
 		assertTrue(elementos.size() == 10);
 
 
-	}// TODO [Prueba13]
+	}
+
+
 
 	/**
 	 * Ir a la lista de usuarios, borrar el primer usuario de la lista, comprobar
@@ -324,7 +316,7 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba13() {
-		
+		PO_UserListView.accesoUserList(driver);
 		
 
 	}// TODO [Prueba14]
@@ -337,6 +329,9 @@ public class MyWallapopApplicationTests {
 	@Test
 	public void Prueba14() {
 
+		PO_UserListView.accesoUserList(driver);
+		
+		
 	}// TODO [Prueba15]
 
 	/**
