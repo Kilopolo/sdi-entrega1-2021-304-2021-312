@@ -5,10 +5,8 @@
 	<!-- Barra de Navegación superior -->
 	<nav th:replace="fragments/nav" />
 	<div class="container">
-		<h2>Usuarios</h2>
+		<h2 th:text="#{users.message}"></h2>
 		
-		<p>Los usuarios que actualmente figuran en el sistema son los
-			siguientes:</p>
 		<div class="table-responsive">
 			<table class="table table-hover" id="tableUsers">
 				<thead>
@@ -28,9 +26,7 @@
 						<td th:text="${user.email}"></td>
 						<td th:text="${user.name}"></td>
 						<td th:text="${user.lastName}"></td>
-						<td><a  th:text="#{detail.message}"></a></td>
-						<td><a  th:text="#{edit.message}"></a></td>
-						<td><a  th:text="#{delete.message}"></a></td>
+						<td><a  th:text="#{delete.message}" th:href= "${'/user/delete/'+ user.id}"></a></td>
 					</tr>
 				</tbody>
 			</table>
