@@ -21,6 +21,7 @@ import com.uniovi.entities.User;
 import com.uniovi.services.RolesService;
 import com.uniovi.services.SecurityService;
 import com.uniovi.services.UsersService;
+import com.uniovi.validators.LoginFormValidator;
 import com.uniovi.validators.SignUpFormValidator;
 
 
@@ -36,6 +37,7 @@ public class UsersController {
 
 	@Autowired
 	private SignUpFormValidator signUpFormValidator;
+	
 
 	@Autowired
 	private RolesService rolesService;
@@ -46,15 +48,19 @@ public class UsersController {
 	//GESTION DE LOGIN/REGISTRO
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public String signup(@Validated User user, BindingResult result) {
+	public String signup(@ModelAttribute @Validated User user, BindingResult result) {
+		
+//		System.out.println(user.getEmail(),user.getPasswordConfirm());
+		
 		signUpFormValidator.validate(user, result);
 		if (result.hasErrors()) {
 			return "signup";
 		}
 		user.setRole(rolesService.getRoles()[0]);
+//		user.setMoney(100.0);
 		usersService.addUser(user);
-		securityService.autoLogin(user.getEmail(), user.getPassword());
-		return "redirect:home";
+		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
+		return "redirect:user/home";
 	}
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
@@ -69,8 +75,10 @@ public class UsersController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model) {
+
 		return "login";
 	}
+
 	
 
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
@@ -80,11 +88,20 @@ public class UsersController {
 		User activeUser = usersService.getUserByEmail(email);
 		httpSession.setAttribute("activeUser",activeUser);
 
-		httpSession.setAttribute("activeUser", activeUser);
 		return "home";
 	}
 	
 	//GESTION DE USUARIOS
+	
+	@RequestMapping(value = "/user/home")
+	public String getUserHome(Model model) {
+		model.addAttribute("rolesList", rolesService.getRoles());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String email = auth.getName();
+		User activeUser = usersService.getUserByEmail(email);
+		model.addAttribute("user", activeUser);
+		return "user/home";
+	}
 	
 	@RequestMapping(value = "/user/add")
 	public String getUser(Model model) {

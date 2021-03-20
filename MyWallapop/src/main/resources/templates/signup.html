@@ -15,7 +15,7 @@
 					<input type="text" class="form-control" name="email"
 						placeholder="example@example.com" required="true" /><span
 						class="text-danger" th:if="${#fields.hasErrors('email')}"
-						th:errors="*{email}">
+						th:errors="*{email}"></span>
 				</div>
 			</div>
 			<div class="form-group">
@@ -24,7 +24,7 @@
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="name" required="true" />
 					<span class="text-danger" th:if="${#fields.hasErrors('name')}"
-						th:errors="*{name}" />
+						th:errors="*{name}" ></span>
 				</div>
 			</div>
 			<div class="form-group">
@@ -33,7 +33,7 @@
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="lastName"
 						required="true" /><span class="text-danger"
-						th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" />
+						th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" ></span>
 				</div>
 			</div>
 			<div class="form-group">
@@ -48,10 +48,10 @@
 				<label class="control-label col-sm-2" for="passwordConfirm"
 					th:text="#{repeat.message}"></label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control" name="passwordConfirm" /><span
+					<input type="password" class="form-control" required='true' name="passwordConfirm" /><span
 						class="text-danger"
 						th:if="${#fields.hasErrors('passwordConfirm')}"
-						th:errors="*{passwordConfirm}" />
+						th:errors="*{passwordConfirm}" ></span>
 
 				</div>
 			</div>

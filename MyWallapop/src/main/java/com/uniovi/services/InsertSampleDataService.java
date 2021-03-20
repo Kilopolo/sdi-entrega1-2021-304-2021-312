@@ -15,24 +15,21 @@ public class InsertSampleDataService {
 	@Autowired
 	private RolesService rolesService;
 
-
 	@PostConstruct
 	public void init() {
+		/*
+		 * Sólo existirá un usuario administrador en el sistema con email
+		 * “admin@email.com” y contraseña “admin”
+		 */
+		//TODO ELIMINAR AL TERMINAR LA APLICACION
+		insertDataEasyAccess();
 
-		User user = new User("user","user","user");
-		user.setPassword("123456");
-		user.setRole(rolesService.getRoles()[0]);
-		
-		
-		User admin = new User("admin@email.com", "Admin", "Admin");
+		User admin = new User("admin@email.com", "AdministradorPoggers", "Bonk");
 		admin.setPassword("admin");
 		admin.setRole(rolesService.getRoles()[1]);
 		
-
-		usersService.addUser(user);
 		usersService.addUser(admin);
 		
-
 		User user1 = new User("99999990A@wywallapop.com", "Pedro", "Díaz");
 		user1.setPassword("123456");
 		user1.setRole(rolesService.getRoles()[0]);
@@ -55,8 +52,15 @@ public class InsertSampleDataService {
 
 		User user6 = new User("99999988F@wywallapop.com", "Edward", "Núñez");
 		user6.setPassword("123456");
-		user6.setRole(rolesService.getRoles()[0]);
+		user6.setRole(rolesService.getRoles()[0]);	
 
+		User user7 = new User("antonio@wywallapop.com", "Antonio", "Suarez");
+		user7.setPassword("123456");
+		user7.setRole(rolesService.getRoles()[0]);
+
+		User user8 = new User("pablo@wywallapop.com", "Pablo", "Diaz");
+		user8.setPassword("123456");
+		user8.setRole(rolesService.getRoles()[0]);
 
 		usersService.addUser(user1);
 		usersService.addUser(user2);
@@ -64,5 +68,20 @@ public class InsertSampleDataService {
 		usersService.addUser(user4);
 		usersService.addUser(user5);
 		usersService.addUser(user6);
+		usersService.addUser(user7);
+		usersService.addUser(user8);
+	}
+
+	private void insertDataEasyAccess() {
+		User user = new User("user", "user", "user");
+		user.setPassword("123456");
+		user.setRole(rolesService.getRoles()[0]);
+
+		User admin = new User("admin", "Admin", "Admin");
+		admin.setPassword("123456");
+		admin.setRole(rolesService.getRoles()[1]);
+
+		usersService.addUser(user);
+		usersService.addUser(admin);
 	}
 }
