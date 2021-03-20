@@ -288,27 +288,18 @@ public class MyWallapopApplicationTests {
 
 	}
 
-
-	
 	/**
 	 * Mostrar el listado de usuarios y comprobar que se muestran todos los que
 	 * existen en el sistema.
 	 */
 	@Test
 	public void Prueba12() {
-		
-		PO_UserListView.accesoUserList(driver);
-		
-		// Contamos el número de filas de notas
-		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
-				PO_View.getTimeout());
-//		CUIDADO AL AÑADIR MAS USUARIOS EN PRUEBAS ANTERIORES
-		assertTrue(elementos.size() == 10);
 
+		PO_UserListView.accesoUserList(driver);
+
+		PO_UserListView.checkNumberOfUsersOnList(driver, 10);
 
 	}
-
-
 
 	/**
 	 * Ir a la lista de usuarios, borrar el primer usuario de la lista, comprobar
@@ -317,9 +308,12 @@ public class MyWallapopApplicationTests {
 	@Test
 	public void Prueba13() {
 		PO_UserListView.accesoUserList(driver);
-		
 
-	}// TODO [Prueba14]
+		PO_UserListView.deleteUser(driver, 0);
+
+		PO_UserListView.checkNumberOfUsersOnList(driver, 9);
+
+	}
 
 	/**
 	 * Ir a la lista de usuarios, borrar el último usuario de la lista, comprobar
@@ -330,9 +324,12 @@ public class MyWallapopApplicationTests {
 	public void Prueba14() {
 
 		PO_UserListView.accesoUserList(driver);
-		
-		
-	}// TODO [Prueba15]
+
+		PO_UserListView.deleteUser(driver, 8);
+
+		PO_UserListView.checkNumberOfUsersOnList(driver, 8);
+
+	}
 
 	/**
 	 * Ir a la lista de usuarios, borrar 3 usuarios, comprobar que la lista se
@@ -341,6 +338,12 @@ public class MyWallapopApplicationTests {
 	@Test
 	public void Prueba15() {
 
+		PO_UserListView.accesoUserList(driver);
+
+		PO_UserListView.deleteUser(driver, 7,2,4);
+
+		PO_UserListView.checkNumberOfUsersOnList(driver, 5);
+		
 	}// TODO [Prueba16]
 
 	/**
