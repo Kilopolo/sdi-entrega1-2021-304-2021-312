@@ -36,11 +36,14 @@ public class User {
 		this.email= email;
 		this.name= name;
 		this.lastName= lastName;
+		this.money=100.0;
 	}
 	
 	
 
-	
+	public Long getId() {
+		return id;
+	}
 	public String getEmail() {
 		return email;
 	}
