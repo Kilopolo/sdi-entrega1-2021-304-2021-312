@@ -198,7 +198,7 @@ public class MyWallapopApplicationTests {
 	}
 
 	/**
-	 * Inicio de sesión con datos inválidos (usuario estándar, campo // email y
+	 * Inicio de sesión con datos inválidos (usuario estándar, campo email y
 	 * contraseña vacíos).
 	 * 
 	 */
@@ -216,7 +216,7 @@ public class MyWallapopApplicationTests {
 	}
 
 	/**
-	 * Inicio de sesión con datos válidos (usuario estándar, email // existente,
+	 * Inicio de sesión con datos válidos (usuario estándar, email existente,
 	 * pero contraseña incorrecta).
 	 */
 	@Test
@@ -234,7 +234,7 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba9]
 
 	/**
-	 * Inicio de sesión con datos inválidos (usuario estándar, email // no existente
+	 * Inicio de sesión con datos inválidos (usuario estándar, email  no existente
 	 * en la aplicación).
 	 */
 	@Test
@@ -243,7 +243,7 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba10]
 
 	/**
-	 * Hacer click en la opción de salir de sesión y comprobar que // se redirige a
+	 * Hacer click en la opción de salir de sesión y comprobar que se redirige a
 	 * la página de inicio de sesión (Login).
 	 */
 	@Test
@@ -252,7 +252,7 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba11]
 
 	/**
-	 * Comprobar que el botón cerrar sesión no está visible si el // usuario no está
+	 * Comprobar que el botón cerrar sesión no está visible si el  usuario no está
 	 * autenticado.
 	 */
 	@Test
@@ -261,7 +261,7 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba12]
 
 	/**
-	 * Mostrar el listado de usuarios y comprobar que se muestran // todos los que
+	 * Mostrar el listado de usuarios y comprobar que se muestran  todos los que
 	 * existen en el sistema.
 	 */
 	@Test
@@ -270,7 +270,7 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba13]
 
 	/**
-	 * Ir a la lista de usuarios, borrar el primer usuario de la // lista, comprobar
+	 * Ir a la lista de usuarios, borrar el primer usuario de la  lista, comprobar
 	 * que la lista se actualiza y que el usuario desaparece.
 	 */
 	@Test
@@ -279,7 +279,7 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba14]
 
 	/**
-	 * Ir a la lista de usuarios, borrar el último usuario de la // lista, comprobar
+	 * Ir a la lista de usuarios, borrar el último usuario de la  lista, comprobar
 	 * que la lista se actualiza y que el usuario desaparece.
 	 * 
 	 */
@@ -289,7 +289,7 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba15]
 
 	/**
-	 * Ir a la lista de usuarios, borrar 3 usuarios, comprobar que // la lista se
+	 * Ir a la lista de usuarios, borrar 3 usuarios, comprobar que  la lista se
 	 * actualiza y que los usuarios desaparecen.
 	 */
 	@Test
@@ -298,8 +298,8 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba16]
 
 	/**
-	 * Ir al formulario de alta de oferta, rellenarla con datos // válidos y pulsar
-	 * el botón Submit. Comprobar que la oferta sale en el listado // de ofertas de
+	 * Ir al formulario de alta de oferta, rellenarla con datos  válidos y pulsar
+	 * el botón Submit. Comprobar que la oferta sale en el listado  de ofertas de
 	 * dicho usuario.
 	 */
 	@Test
@@ -308,8 +308,8 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba17]
 
 	/**
-	 * Ir al formulario de alta de oferta, rellenarla con datos // inválidos (campo
-	 * título vacío) y pulsar el botón Submit. Comprobar que se // muestra el
+	 * Ir al formulario de alta de oferta, rellenarla con datos  inválidos (campo
+	 * título vacío) y pulsar el botón Submit. Comprobar que se  muestra el
 	 * mensaje de campo obligatorio.
 	 * 
 	 */
@@ -319,7 +319,7 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba18]
 
 	/**
-	 * Mostrar el listado de ofertas para dicho usuario y comprobar // que se
+	 * Mostrar el listado de ofertas para dicho usuario y comprobar que se
 	 * muestran todas los que existen para este usuario.
 	 */
 	@Test
@@ -328,7 +328,7 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba19]
 
 	/**
-	 * Ir a la lista de ofertas, borrar la primera oferta de la // lista, comprobar
+	 * Ir a la lista de ofertas, borrar la primera oferta de la lista, comprobar
 	 * que la lista se actualiza y que la oferta desaparece.
 	 */
 	@Test
@@ -337,7 +337,7 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba20]
 
 	/**
-	 * Ir a la lista de ofertas, borrar la última oferta de la // lista, comprobar
+	 * Ir a la lista de ofertas, borrar la última oferta de la lista, comprobar
 	 * que la lista se actualiza y que la oferta desaparece.
 	 */
 	@Test
@@ -346,8 +346,8 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba21]
 
 	/**
-	 * Hacer una búsqueda con el campo vacío y comprobar que se // muestra la página
-	 * que corresponde con el listado de las ofertas existentes en // el sistema
+	 * Hacer una búsqueda con el campo vacío y comprobar que se muestra la página
+	 * que corresponde con el listado de las ofertas existentes en  el sistema
 	 */
 	@Test
 	public void Prueba21() {
@@ -355,8 +355,8 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba22]
 
 	/**
-	 * Hacer una búsqueda escribiendo en el campo un texto que no // exista y
-	 * comprobar que se muestra la página que corresponde, con la lista de //
+	 * Hacer una búsqueda escribiendo en el campo un texto que no  exista y
+	 * comprobar que se muestra la página que corresponde, con la lista de
 	 * ofertas vacía.
 	 */
 	@Test
@@ -365,9 +365,9 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba23]
 
 	/**
-	 * Sobre una búsqueda determinada (a elección del // desarrollador), comprar una
-	 * oferta que deja un saldo positivo en el contador // del comprador. Comprobar
-	 * que el contador se actualiza correctamente en la // vista del comprador.
+	 * Sobre una búsqueda determinada (a elección del  desarrollador), comprar una
+	 * oferta que deja un saldo positivo en el contador del comprador. Comprobar
+	 * que el contador se actualiza correctamente en la vista del comprador.
 	 */
 	@Test
 	public void Prueba23() {
@@ -375,9 +375,9 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba24]
 
 	/**
-	 * Sobre una búsqueda determinada (a elección del // desarrollador), comprar una
-	 * oferta que deja un saldo 0 en el contador del // comprador. Comprobar que el
-	 * contador se actualiza correctamente en la vista // del comprador.
+	 * Sobre una búsqueda determinada (a elección del desarrollador), comprar una
+	 * oferta que deja un saldo 0 en el contador del comprador. Comprobar que el
+	 * contador se actualiza correctamente en la vista del comprador.
 	 */
 	@Test
 	public void Prueba24() {
@@ -385,9 +385,9 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba25]
 
 	/**
-	 * Sobre una búsqueda determinada (a elección del // desarrollador), intentar
-	 * comprar una oferta que esté por encima de saldo // disponible del comprador.
-	 * Y comprobar que se muestra el mensaje de saldo no // suficiente.
+	 * Sobre una búsqueda determinada (a elección del desarrollador), intentar
+	 * comprar una oferta que esté por encima de saldo disponible del comprador.
+	 * Y comprobar que se muestra el mensaje de saldo no suficiente.
 	 */
 	@Test
 	public void Prueba25() {
@@ -395,7 +395,7 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba26]
 
 	/**
-	 * Ir a la opción de ofertas compradas del usuario y mostrar la // lista.
+	 * Ir a la opción de ofertas compradas del usuario y mostrar la lista.
 	 * Comprobar que aparecen las ofertas que deben aparecer.
 	 */
 	@Test
@@ -404,9 +404,9 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba27]
 
 	/**
-	 * Visualizar al menos cuatro páginas haciendo el cambio //
+	 * Visualizar al menos cuatro páginas haciendo el cambio
 	 * español/inglés/español (comprobando que algunas de las etiquetas cambian al
-	 * // idioma correspondiente). Página principal/Opciones principales de //
+	 *  idioma correspondiente). Página principal/Opciones principales de 
 	 * usuario/Listado de usuarios /Vista de alta de oferta.
 	 */
 	@Test
@@ -415,7 +415,7 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba28]
 
 	/**
-	 * Intentar acceder sin estar autenticado a la opción de listado // de usuarios
+	 * Intentar acceder sin estar autenticado a la opción de listado  de usuarios
 	 * del administrador. Se deberá volver al formulario de login.
 	 */
 	@Test
@@ -424,8 +424,8 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba29]
 
 	/**
-	 * Intentar acceder sin estar autenticado a la opción de listado // de ofertas
-	 * propias de un usuario estándar. Se deberá volver al formulario de // login.
+	 * Intentar acceder sin estar autenticado a la opción de listado  de ofertas
+	 * propias de un usuario estándar. Se deberá volver al formulario de  login.
 	 */
 	@Test
 	public void Prueba29() {
@@ -433,8 +433,8 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba30]
 
 	/**
-	 * Estando autenticado como usuario estándar intentar acceder a // la opción de
-	 * listado de usuarios del administrador. Se deberá indicar un // mensaje de
+	 * Estando autenticado como usuario estándar intentar acceder a la opción de
+	 * listado de usuarios del administrador. Se deberá indicar un  mensaje de
 	 * acción prohibida.
 	 */
 	@Test
@@ -445,9 +445,9 @@ public class MyWallapopApplicationTests {
 
 	// TODO [Prueba31]
 	/**
-	 * Sobre una búsqueda determinada de ofertas (a elección de // desarrollador),
-	 * enviar un mensaje a una oferta concreta. Se abriría dicha // conversación por
-	 * primera vez. Comprobar que el mensaje aparece en el listado // de mensajes.
+	 * Sobre una búsqueda determinada de ofertas (a elección de  desarrollador),
+	 * enviar un mensaje a una oferta concreta. Se abriría dicha  conversación por
+	 * primera vez. Comprobar que el mensaje aparece en el listado  de mensajes.
 	 */
 	@Test
 	public void Prueba31() {
@@ -455,8 +455,8 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba32]
 
 	/**
-	 * Sobre el listado de conversaciones enviar un mensaje a una // conversación ya
-	 * abierta. Comprobar que el mensaje aparece en la lista de // mensajes.
+	 * Sobre el listado de conversaciones enviar un mensaje a una  conversación ya
+	 * abierta. Comprobar que el mensaje aparece en la lista de  mensajes.
 	 */
 	@Test
 	public void Prueba32() {
@@ -464,7 +464,7 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba33]
 
 	/**
-	 * Mostrar el listado de conversaciones ya abiertas. Comprobar // que el listado
+	 * Mostrar el listado de conversaciones ya abiertas. Comprobar  que el listado
 	 * contiene las conversaciones que deben ser.
 	 */
 	@Test
@@ -473,8 +473,8 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba34]
 
 	/**
-	 * Sobre el listado de conversaciones ya abiertas. Pinchar el // enlace Eliminar
-	 * de la primera y comprobar que el listado se actualiza // correctamente.
+	 * Sobre el listado de conversaciones ya abiertas. Pinchar el  enlace Eliminar
+	 * de la primera y comprobar que el listado se actualiza  correctamente.
 	 */
 	@Test
 	public void Prueba34() {
@@ -482,8 +482,8 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba35]
 
 	/**
-	 * Sobre el listado de conversaciones ya abiertas, pulsar el // enlace Eliminar
-	 * de la última y comprobar que el listado se actualiza // correctamente.
+	 * Sobre el listado de conversaciones ya abiertas, pulsar el  enlace Eliminar
+	 * de la última y comprobar que el listado se actualiza  correctamente.
 	 */
 	@Test
 	public void Prueba35() {
@@ -491,9 +491,9 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba36]
 
 	/**
-	 * Al crear una oferta marcar dicha oferta como destacada y a // continuación
-	 * comprobar: i) que aparece en el listado de ofertas destacadas // para los
-	 * usuarios y que el saldo del usuario se actualiza adecuadamente en la // vista
+	 * Al crear una oferta marcar dicha oferta como destacada y a  continuación
+	 * comprobar: i) que aparece en el listado de ofertas destacadas para los
+	 * usuarios y que el saldo del usuario se actualiza adecuadamente en la  vista
 	 * del ofertante (-20).
 	 */
 	@Test
@@ -502,9 +502,9 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba37]
 
 	/**
-	 * Sobre el listado de ofertas de un usuario con menos de 20 // euros de saldo,
-	 * pinchar en el enlace Destacada y a continuación comprobar: // que aparece en
-	 * el listado de ofertas destacadas para los usuarios y que el // saldo del
+	 * Sobre el listado de ofertas de un usuario con menos de 20 euros de saldo,
+	 * pinchar en el enlace Destacada y a continuación comprobar: que aparece en
+	 * el listado de ofertas destacadas para los usuarios y que el saldo del
 	 * usuario se actualiza adecuadamente en la vista del ofertante (-20).
 	 * 
 	 */
@@ -514,8 +514,8 @@ public class MyWallapopApplicationTests {
 	}// TODO [Prueba38]
 
 	/**
-	 * Sobre el listado de ofertas de un usuario con menos de 20 // euros de saldo,
-	 * pinchar en el enlace Destacada y a continuación comprobar que // se muestra
+	 * Sobre el listado de ofertas de un usuario con menos de 20 euros de saldo,
+	 * pinchar en el enlace Destacada y a continuación comprobar que se muestra
 	 * el mensaje de saldo no suficiente.
 	 */
 	@Test
