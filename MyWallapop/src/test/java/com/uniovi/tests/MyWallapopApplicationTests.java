@@ -387,10 +387,8 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba18() {
-		String email = "usario@prueba.com";
-		String password = "123456";
 		//accedo al usuario y a sus ofertas list
-		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/list");
+		PO_GestionarOfertasView.accesoGestionOfertas(driver, "usario@prueba.com", "123456", "offer/list");
 		
 
 	}// TODO [Prueba19]
