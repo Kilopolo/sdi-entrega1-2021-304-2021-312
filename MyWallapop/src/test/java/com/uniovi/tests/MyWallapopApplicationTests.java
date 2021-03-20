@@ -20,6 +20,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.uniovi.tests.pageobjects.PO_HomeView;
+import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_PrivateView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
@@ -177,7 +178,7 @@ public class MyWallapopApplicationTests {
 		// COmprobamos el error de email repetido.
 		PO_RegisterView.checkKey(driver, "Error.signup.email.duplicate", PO_Properties.getSPANISH());
 		
-	}// TODO [Prueba5]
+	}
 
 	/**
 	 * Inicio de sesión con datos válidos (administrador).
@@ -186,7 +187,7 @@ public class MyWallapopApplicationTests {
 	public void Prueba05() {
 		PO_PrivateView.login(driver, "admin@wywallapop.com", "123456", "Esta es la parte privada de la web");
 
-	}// TODO [Prueba6]
+	}
 
 	/**
 	 * Inicio de sesión con datos válidos (usuario estándar).
@@ -194,7 +195,7 @@ public class MyWallapopApplicationTests {
 	@Test
 	public void Prueba06() {
 		PO_PrivateView.login(driver, "user@wywallapop.com", "123456", "Esta es la parte privada de la web");
-	}// TODO [Prueba7]
+	}
 
 	/**
 	 * Inicio de sesión con datos inválidos (usuario estándar, campo // email y
@@ -203,8 +204,16 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba07() {
+		// Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		// Rellenamos el formulario
+		PO_LoginView.fillForm(driver, "", "");
+		// COmprobamos que da error de entrada
+		PO_View.getP();
+		// COmprobamos el error mirando que estemos en la misma pagina
+		PO_RegisterView.checkKey(driver, "login.message", PO_Properties.getSPANISH());
 
-	}// TODO [Prueba8]
+	}
 
 	/**
 	 * Inicio de sesión con datos válidos (usuario estándar, email // existente,
@@ -213,6 +222,15 @@ public class MyWallapopApplicationTests {
 	@Test
 	public void Prueba08() {
 
+		// Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		// Rellenamos el formulario
+		PO_LoginView.fillForm(driver, "user@wywallapop.com", "");
+		// COmprobamos que da error de entrada
+		PO_View.getP();
+		// COmprobamos el error mirando que estemos en la misma pagina
+		PO_RegisterView.checkKey(driver, "login.message", PO_Properties.getSPANISH());
+		
 	}// TODO [Prueba9]
 
 	/**

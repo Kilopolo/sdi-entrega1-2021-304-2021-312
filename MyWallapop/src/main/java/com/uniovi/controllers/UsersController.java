@@ -17,6 +17,7 @@ import com.uniovi.entities.User;
 import com.uniovi.services.RolesService;
 import com.uniovi.services.SecurityService;
 import com.uniovi.services.UsersService;
+import com.uniovi.validators.LoginFormValidator;
 import com.uniovi.validators.SignUpFormValidator;
 
 
@@ -32,6 +33,9 @@ public class UsersController {
 
 	@Autowired
 	private SignUpFormValidator signUpFormValidator;
+	
+	@Autowired
+	private LoginFormValidator loginFormValidator;
 
 	@Autowired
 	private RolesService rolesService;
@@ -70,6 +74,16 @@ public class UsersController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model) {
 		return "login";
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(@ModelAttribute @Validated User user, BindingResult result) {
+		loginFormValidator.validate(user, result);
+		if (result.hasErrors()) {
+			return "login";
+		}
+		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
+		return "redirect:user/home";
 	}
 	
 
