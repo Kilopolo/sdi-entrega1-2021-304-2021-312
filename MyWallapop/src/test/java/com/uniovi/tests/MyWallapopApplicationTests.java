@@ -231,7 +231,7 @@ public class MyWallapopApplicationTests {
 		// COmprobamos el error mirando que estemos en la misma pagina
 		PO_RegisterView.checkKey(driver, "Error.login.email.error", PO_Properties.getSPANISH());
 		
-	}// TODO [Prueba9]
+	}
 
 	/**
 	 * Inicio de sesión con datos inválidos (usuario estándar, email  no existente
@@ -240,6 +240,15 @@ public class MyWallapopApplicationTests {
 	@Test
 	public void Prueba09() {
 
+		// Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		// Rellenamos el formulario
+		PO_LoginView.fillForm(driver, "inexistenteUsuario@wywallapop.com", "123321");
+		// COmprobamos que da error de entrada
+		PO_View.getP();
+		// COmprobamos el error mirando que estemos en la misma pagina
+		PO_RegisterView.checkKey(driver, "Error.login.email.error", PO_Properties.getSPANISH());
+		
 	}// TODO [Prueba10]
 
 	/**
@@ -248,7 +257,11 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba10() {
-
+		PO_PrivateView.login(driver, "user@wywallapop.com", "123456", "Esta es la parte privada de la web");
+		// desconectamos
+		PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary");
+		// comprobamos estar desconectados
+		PO_View.checkElement(driver, "text", "Idéntificate");
 	}// TODO [Prueba11]
 
 	/**
