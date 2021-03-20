@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,17 +24,34 @@ public class Offer {
 	private boolean available;
 	private double amount;
 	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
 	public Offer() {
 	}
 	
-	public Offer(String title, String details, double amount) {
+	public Offer(String title, String details, double amount, User user) {
 		this.title = title;
 		this.details = details;
 		this.orderDate = new Date();
 		this.amount = amount;
 		this.available = true;
+		this.user = user;
 	}
 	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public Long getId() {
 		return id;
 	}
