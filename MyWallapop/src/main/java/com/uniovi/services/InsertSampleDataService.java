@@ -54,11 +54,11 @@ public class InsertSampleDataService {
 		user6.setPassword("123456");
 		user6.setRole(rolesService.getRoles()[0]);	
 
-		User user7 = new User("user@wywallapop.com", "Antonio", "Suarez");
+		User user7 = new User("antonio@wywallapop.com", "Antonio", "Suarez");
 		user7.setPassword("123456");
 		user7.setRole(rolesService.getRoles()[0]);
 
-		User user8 = new User("user@wywallapop.com", "Pablo", "Diaz");
+		User user8 = new User("pablo@wywallapop.com", "Pablo", "Diaz");
 		user8.setPassword("123456");
 		user8.setRole(rolesService.getRoles()[0]);
 
