@@ -225,11 +225,11 @@ public class MyWallapopApplicationTests {
 		// Vamos al formulario de logueo.
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		// Rellenamos el formulario
-		PO_LoginView.fillForm(driver, "user@wywallapop.com", "");
+		PO_LoginView.fillForm(driver, "user@wywallapop.com", "1");
 		// COmprobamos que da error de entrada
 		PO_View.getP();
 		// COmprobamos el error mirando que estemos en la misma pagina
-		PO_RegisterView.checkKey(driver, "login.message", PO_Properties.getSPANISH());
+		PO_RegisterView.checkKey(driver, "Error.login.email.error", PO_Properties.getSPANISH());
 		
 	}// TODO [Prueba9]
 

@@ -34,8 +34,6 @@ public class UsersController {
 	@Autowired
 	private SignUpFormValidator signUpFormValidator;
 	
-	@Autowired
-	private LoginFormValidator loginFormValidator;
 
 	@Autowired
 	private RolesService rolesService;
@@ -73,18 +71,10 @@ public class UsersController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model) {
+
 		return "login";
 	}
-	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@ModelAttribute @Validated User user, BindingResult result) {
-		loginFormValidator.validate(user, result);
-		if (result.hasErrors()) {
-			return "login";
-		}
-		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
-		return "redirect:user/home";
-	}
+
 	
 
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
