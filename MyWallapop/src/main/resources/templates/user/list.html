@@ -22,7 +22,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="user : ${usersList}">
+					<tr th:each="user : ${usersList}"
+ 						th:if="${user.role != 'ROLE_ADMIN'}">
 						<td th:text="${user.email}"></td>
 						<td th:text="${user.name}"></td>
 						<td th:text="${user.lastName}"></td>
