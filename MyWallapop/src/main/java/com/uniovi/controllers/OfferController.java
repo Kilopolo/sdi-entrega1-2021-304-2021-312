@@ -10,12 +10,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.uniovi.entities.Offer;
 import com.uniovi.services.OfferService;
+import com.uniovi.services.UsersService;
 
 @Controller
 public class OfferController {
 
 	@Autowired
 	OfferService offersService;
+	
+	@Autowired
+	UsersService usersService;
 	
 	@RequestMapping("/offer/list")
 	public String getList(Model model){
@@ -25,7 +29,8 @@ public class OfferController {
 	
 	
 	@RequestMapping(value = "/offer/add")
-	public String getOffer(){
+	public String getOffer(Model model){
+		model.addAttribute("userList", usersService.getUsers());
 		return "offer/add";
 	}
 	
