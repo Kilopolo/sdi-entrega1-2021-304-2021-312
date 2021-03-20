@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/head" />
+<body>
+	<nav th:replace="fragments/nav" />
+	<div sec:authorize="hasRole('ROLE_USER')"  class="container" style="text-align: center">
+		<h2 th:text="#{welcome.message}"></h2>
+		<h3 th:text="#{welcomesub.message}"></h3>
+		<p th:text="#{usermessage.message}"><p>
+		<p>
+			<span th:text=${user.email} >
+			</span>
+		</p>	
+				<p>
+			<span th:text=${user.money} >
+			</span>
+		</p>			
+		</div>
+
+	</div>
+	<footer th:replace="fragments/footer" />
+</body>
+</html>

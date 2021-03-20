@@ -54,7 +54,7 @@ public class UsersController {
 //		user.setMoney(100.0);
 		usersService.addUser(user);
 		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
-		return "redirect:home";
+		return "redirect:user/home";
 	}
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
@@ -84,6 +84,16 @@ public class UsersController {
 	}
 	
 	//GESTION DE USUARIOS
+	
+	@RequestMapping(value = "/user/home")
+	public String getUserHome(Model model) {
+		model.addAttribute("rolesList", rolesService.getRoles());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String email = auth.getName();
+		User activeUser = usersService.getUserByEmail(email);
+		model.addAttribute("user", activeUser);
+		return "user/home";
+	}
 	
 	@RequestMapping(value = "/user/add")
 	public String getUser(Model model) {
