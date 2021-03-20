@@ -22,13 +22,32 @@
 					</tr>
 				</thead>
 				<tbody>
+					<form class="deleteform" action="/user/list/delete"  method="post">
 					<tr th:each="user : ${usersList}"
- 						th:if="${user.role != 'ROLE_ADMIN'}">
+						th:if="${user.role != 'ROLE_ADMIN'}">
 						<td th:text="${user.email}"></td>
 						<td th:text="${user.name}"></td>
 						<td th:text="${user.lastName}"></td>
-						<td><a  th:text="#{delete.message}" th:href= "${'/user/delete/'+ user.id}"></a></td>
+						<td><input id="deleteCheckbox" name="uid" type="checkbox" th:checked="${user.selected}" th:value="${user.id}"></input></td>
 					</tr>
+					<button type="submit" id="deleteButton" class="btn btn-default"	th:text="#{delete.message}"></button>
+					</form>
+					
+<!-- 					<script>
+							$("#deleteButton").click(function() {
+								$("#usersList").load('/user/list/delete');
+							});
+						</script> -->
+
+					<!-- 					<tr th:each="user : ${usersList}"
+						th:if="${user.role != 'ROLE_ADMIN'}">
+						<td th:text="${user.email}"></td>
+						<td th:text="${user.name}"></td>
+						<td th:text="${user.lastName}"></td>
+						<td><a th:text="#{delete.message}"
+							th:href="${'/user/delete/'+ user.id}"></a></td>
+							<input type="checkbox" name="mycheckbox" th:checked="${myBooleanVariable}" th:field="*{usersList}" th:value="${user.id}"></input></td>
+					</tr> -->
 				</tbody>
 			</table>
 		</div>

@@ -27,6 +27,8 @@ public class User {
 	private String passwordConfirm;
 	private Double money;
 	private String role;
+	@Transient
+	private boolean selected = false;
 	
 	@OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
 	private Set<Offer> offers;
@@ -49,7 +51,19 @@ public class User {
 	
 
 	
-//	public String getPassword2() {
+public boolean isSelected() {
+		return selected;
+	}
+	public void setSelected(boolean selected) {
+		this.selected = selected;
+	}
+	public Set<Offer> getOffers() {
+		return offers;
+	}
+	public void setOffers(Set<Offer> offers) {
+		this.offers = offers;
+	}
+	//	public String getPassword2() {
 //		return password2;
 //	}
 //	public void setPassword2(String password2) {
