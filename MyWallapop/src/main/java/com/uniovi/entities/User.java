@@ -28,8 +28,10 @@ public class User {
 	private boolean enoughMoney = true;
 	private Double money;
 	private String role;
-
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@Transient
+	private boolean selected = false;
+	
+	@OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
 	private Set<Offer> offers;
 
 	public User() {
@@ -50,6 +52,20 @@ public class User {
 	}
 	
 
+	
+	public boolean isSelected() {
+		return selected;
+	}
+	public void setSelected(boolean selected) {
+		this.selected = selected;
+	}
+	public Set<Offer> getOffers() {
+		return offers;
+	}
+	public void setOffers(Set<Offer> offers) {
+		this.offers = offers;
+	}
+	//	public String getPassword2() {
 	public boolean getEnoughMoney() {
 		return enoughMoney;
 	}
@@ -58,13 +74,6 @@ public class User {
 		this.enoughMoney = enoughMoney;
 	}
 
-	public Set<Offer> getOffers() {
-		return offers;
-	}
-
-	public void setOffers(Set<Offer> offers) {
-		this.offers = offers;
-	}
 
 	public void setId(long id) {
 		this.id = id;

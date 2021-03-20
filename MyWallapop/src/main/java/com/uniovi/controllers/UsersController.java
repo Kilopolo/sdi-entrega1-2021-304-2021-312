@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uniovi.entities.User;
 import com.uniovi.services.RolesService;
@@ -116,6 +117,23 @@ public class UsersController {
 		usersService.addUser(user);
 		return "redirect:/user/list";
 	}
+	 
+	@RequestMapping(value = "/user/list/delete" , method = RequestMethod.POST )
+	public String deleteUsersChecked(@RequestParam(value = "uid", required = false) String[] ids) {
+		
+		if (ids != null)
+	    for (int i = 0; i < ids.length; i++) {
+	    	Long uid = (long) Integer.parseInt( ids[i]);
+	    	usersService.deleteUser(uid);
+		}
+//		List<User>users = (List<User>) model.getAttribute("usersList");
+//	    for (User user : users) {
+//			if (user.isSelected()) {
+//				usersService.deleteUser(user.getId());
+//			}
+//		}
+	    return "redirect:/user/list";
+	}
 	
 	@RequestMapping("/user/delete/{id}")
 	public String deleteUser(@PathVariable Long id) {
@@ -125,8 +143,11 @@ public class UsersController {
 	
 	@RequestMapping(value = "/user/list")
 	public String getLista(Model model) {
+		
 		List<User> listaSinAdmin = new ArrayList<User>();
 		model.addAttribute("usersList", usersService.getUsers());
+		boolean myBooleanVariable = false;
+	    model.addAttribute("myBooleanVariable", myBooleanVariable);
 		return "user/list";
 	}
 	
