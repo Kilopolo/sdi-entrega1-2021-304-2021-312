@@ -374,7 +374,7 @@ public class MyWallapopApplicationTests {
 		//accedo al usuario y a sus ofertas add
 		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/add");
 		//relleno el formulario
-		PO_GestionarOfertasView.fillAddOfferForm(driver, email, UUID.randomUUID().toString(), "Oferta", 10+"");
+		PO_GestionarOfertasView.fillAddOfferForm(driver, email, UUID.randomUUID().toString(), "Oferta con una descripcion de mas de veinte caracteres......", 10+"");
 		//compruebo cuantos elementos hay ahora
 		PO_GestionarOfertasView.checkNumberOfOffersOnList(driver, elemeBeforeAdd + 1);
 		
@@ -404,7 +404,7 @@ public class MyWallapopApplicationTests {
 		SeleniumUtils.EsperaCargaPagina(driver, "free", "//*[@id=\"offer-add\"]", PO_View.getTimeout());
 		
 		
-	}// TODO
+	}
 
 	/**
 	 * Mostrar el listado de ofertas para dicho usuario y comprobar que se muestran
@@ -425,7 +425,26 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba19() {
+		
+		String email = "99999988F@wywallapop.com";
+		String password = "123456";
 
+		for (int i = 0; i < 3; i++) {
+			driver.manage().deleteAllCookies();
+			navigateUrl(URL, "");
+			//entro en la vista de la lista de ofertas
+			PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/add");
+			//relleno el formulario
+			PO_GestionarOfertasView.fillAddOfferForm(driver, email, UUID.randomUUID().toString(), "Oferta con una descripcion de mas de veinte caracteres......", 10+"");
+		}
+		
+		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/ownList");
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "free", "//a[contains(@href, ' /offer/delete/31 ')]",
+				PO_View.getTimeout());
+		elementos.get(0).click();
+		
+		
+		
 	}// TODO [Prueba20]
 
 	/**

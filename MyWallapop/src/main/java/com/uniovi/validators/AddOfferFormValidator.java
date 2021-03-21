@@ -21,11 +21,11 @@ public class AddOfferFormValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		Offer offer = (Offer) target;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "Error.empty");
-		if (offer.getTitle().length() < 5 || offer.getTitle().length() > 24) {
+		if (offer.getTitle().length() < 5 || offer.getTitle().length() > 50) {
 			errors.rejectValue("title", "Error.offer.title.length");
 		}
 		
-		if (offer.getDetails().length() < 8 || offer.getDetails().length() > 50) {
+		if (offer.getDetails().length() < 8 || offer.getDetails().length() > 150) {
 			errors.rejectValue("details", "Error.offer.details.length");
 		}
 		if(offer.getAmount() <= 0.0) {
