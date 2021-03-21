@@ -3,12 +3,12 @@ package com.uniovi.tests.pageobjects;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.uniovi.tests.util.SeleniumUtils;
 
@@ -38,12 +38,7 @@ public class PO_GestionarOfertasView extends PO_NavView {
 		driver.findElement(boton).click();
 	}
 
-	/**
-	 * @param password
-	 * @param email
-	 * @param menuLink
-	 * 
-	 */
+
 	public static void accesoGestionOfertas(WebDriver driver, String email, String password, String menuLink) {
 		PO_PrivateView.login(driver, email, password, "Esta es la parte privada de la web");
 
@@ -59,9 +54,7 @@ public class PO_GestionarOfertasView extends PO_NavView {
 		listaMenuGestUsu.get(0).click();
 	}
 
-	/**
-	 * @param expectedSize
-	 */
+
 	public static int checkNumberOfOffersOnList(WebDriver driver, Integer expectedSize) {
 //		Boolean notExistsTrOnTbody = null;
 		if (expectedSize==0) {
@@ -81,11 +74,49 @@ public class PO_GestionarOfertasView extends PO_NavView {
 				return elementos.size();
 //			}
 		}
-			
-		
-
-		
+				
 
 	}
+	
+
+	public static  String insertOffersTo(WebDriver driver, String URL, String email, String password, int count) {
+		String lastUUID ="";
+		for (int i = 0; i < count; i++) {
+			driver.manage().deleteAllCookies();
+			driver.navigate().to(URL);
+			// entro en la vista de la lista de ofertas
+			PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/add");
+			// relleno el formulario
+			lastUUID = UUID.randomUUID().toString();
+			PO_GestionarOfertasView.fillAddOfferForm(driver, email, lastUUID,
+					"Oferta con una descripcion de mas de veinte caracteres......", new Random().nextInt(150) + "");
+		}
+		driver.manage().deleteAllCookies();
+		driver.navigate().to(URL);
+		return lastUUID;
+	}
+	
+	public static   void busquedaOferta(WebDriver driver,String busqueda) {
+		WebElement title = driver.findElement(By.name("searchText"));
+		title.click();
+		title.clear();
+		title.sendKeys(busqueda);
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPaginaxpath(driver, "//*[@id=\"search\"]", PO_View.getTimeout());
+		elementos.get(0).click();
+		SeleniumUtils.EsperaCargaPagina(driver, "free", "//*[@id=\"offer-list\"]", PO_View.getTimeout());
+	}
+	
+	public static  String recuperacionDeDatos(WebDriver driver, String URL) {
+		String lastUUID ="";
+		String[] emails = new String[]{"99999990A@wywallapop.com","99999991B@wywallapop.com","99999992C@wywallapop.com","99999993D@wywallapop.com"};
+
+		for (int i = 0; i < emails.length; i++) {
+			PO_RegisterView.registerUser(driver, emails[i], "123456");
+			lastUUID=PO_GestionarOfertasView.insertOffersTo(driver, URL, emails[i], "123456", 4);
+		}
+		return lastUUID;
+		
+	}
+
 
 }
