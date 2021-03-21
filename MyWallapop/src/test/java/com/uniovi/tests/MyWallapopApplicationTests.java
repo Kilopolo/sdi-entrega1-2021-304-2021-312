@@ -525,7 +525,7 @@ public class MyWallapopApplicationTests {
 		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/list");//*[@id="25"]
 		
 		busquedaOferta("Oferta19");
-		List<WebElement> elementos = SeleniumUtils.EsperaCargaPaginaxpath(driver, "//*[@id=\"24\"]",//   xpath=    //*[@id=\"23\"]
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPaginaxpath(driver, "//*[@id=\"Oferta19\"]",//   xpath=    //*[@id=\"23\"]
 				PO_View.getTimeout());
 		elementos.get(0).click();
 		
@@ -547,7 +547,7 @@ public class MyWallapopApplicationTests {
 		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/list");
 		
 		busquedaOferta("Oferta18");
-		List<WebElement> elementos = SeleniumUtils.EsperaCargaPaginaxpath(driver, "//*[@id=\"25\"]",
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPaginaxpath(driver, "//*[@id=\"Oferta18\"]",
 				PO_View.getTimeout());
 		elementos.get(0).click();
 		
@@ -566,7 +566,7 @@ public class MyWallapopApplicationTests {
 		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/list");
 		
 		busquedaOferta("Oferta20");
-		List<WebElement> elementos = SeleniumUtils.EsperaCargaPaginaxpath(driver, "//*[@id=\"23\"]",
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPaginaxpath(driver, "//*[@id=\"Oferta20\"]",
 				PO_View.getTimeout());
 		elementos.get(0).click();
 		
