@@ -1,12 +1,11 @@
 package com.uniovi.tests;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.TimeoutException;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -664,7 +663,7 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba31() {
-
+		fail("Not yet implemented");
 	}// TODO [Prueba32]
 
 	/**
@@ -673,7 +672,7 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba32() {
-
+		fail("Not yet implemented");
 	}// TODO [Prueba33]
 
 	/**
@@ -682,7 +681,7 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba33() {
-
+		fail("Not yet implemented");
 	}// TODO [Prueba34]
 
 	/**
@@ -691,7 +690,7 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba34() {
-
+		fail("Not yet implemented");
 	}// TODO [Prueba35]
 
 	/**
@@ -700,7 +699,7 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba35() {
-
+		fail("Not yet implemented");
 	}// TODO [Prueba36]
 
 	/**
@@ -711,7 +710,7 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba36() {
-
+		fail("Not yet implemented");
 	}// TODO [Prueba37]
 
 	/**
@@ -723,7 +722,7 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba37() {
-
+		fail("Not yet implemented");
 	}// TODO [Prueba38]
 
 	/**
@@ -733,6 +732,6 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba38() {
-
+		fail("Not yet implemented");
 	}
 }
