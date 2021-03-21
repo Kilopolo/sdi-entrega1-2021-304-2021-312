@@ -342,7 +342,7 @@ public class MyWallapopApplicationTests {
 
 		PO_UserListView.accesoUserList(driver);
 
-		PO_UserListView.deleteUser(driver, 6,2,4);
+		PO_UserListView.deleteUser(driver, 0,1,2);
 
 		PO_UserListView.checkNumberOfUsersOnList(driver, 4);
 		
@@ -356,10 +356,9 @@ public class MyWallapopApplicationTests {
 	@Test
 	public void Prueba16() {
 
-		String email = "usario@prueba.com";
+		String email = "99999988F@wywallapop.com";
 		String password = "123456";
 		//registro un usuario porque lo borramos en pruebas anteriores
-		//TODO DESCOMENTAR PARA RELEASE
 //		PO_RegisterView.registerUser(driver, email, password);
 		//retorno a home
 		driver.manage().deleteAllCookies();
@@ -375,7 +374,7 @@ public class MyWallapopApplicationTests {
 		//accedo al usuario recien creado y a sus ofertas add
 		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/add");
 		//relleno el formulario
-		PO_GestionarOfertasView.fillAddOfferForm(driver, email, UUID.randomUUID().toString(), "Oferta", 0+"");
+		PO_GestionarOfertasView.fillAddOfferForm(driver, email, UUID.randomUUID().toString(), "Oferta", 10+"");
 		//compruebo cuantos elementos hay ahora
 		PO_GestionarOfertasView.checkNumberOfOffersOnList(driver, elemeBeforeAdd + 1);
 		
@@ -394,7 +393,15 @@ public class MyWallapopApplicationTests {
 	@Test
 	public void Prueba17() {
 
-		PO_GestionarOfertasView.accesoGestionOfertas(driver, "usario@prueba.com", "123456", "offer/add");
+		String email = "99999988F@prueba.com";
+		String password = "123456";
+		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/add");
+		//relleno el formulario
+		PO_GestionarOfertasView.fillAddOfferForm(driver, email, "", "Oferta", 10+"");
+		// COmprobamos que da error de entrada
+		PO_View.getP();
+		// COmprobamos el error mirando que estemos en la misma pagina
+		PO_RegisterView.checkKey(driver, "addOffers.message", PO_Properties.getSPANISH());
 		
 	}// TODO [Prueba18]
 
@@ -405,7 +412,7 @@ public class MyWallapopApplicationTests {
 	@Test
 	public void Prueba18() {
 		//accedo al usuario y a sus ofertas list
-		PO_GestionarOfertasView.accesoGestionOfertas(driver, "usario@prueba.com", "123456", "offer/list");
+		PO_GestionarOfertasView.accesoGestionOfertas(driver, "99999988F@prueba.com", "123456", "offer/list");
 		
 
 	}// TODO [Prueba19]

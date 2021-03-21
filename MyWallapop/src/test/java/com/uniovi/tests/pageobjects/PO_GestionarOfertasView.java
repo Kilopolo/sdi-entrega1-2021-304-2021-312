@@ -7,6 +7,8 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.uniovi.tests.util.SeleniumUtils;
 
@@ -62,9 +64,9 @@ public class PO_GestionarOfertasView extends PO_NavView {
 	 */
 	public static int checkNumberOfOffersOnList(WebDriver driver, Integer expectedSize) {
 
-//		Boolean notExistsTrOnTbody = (new WebDriverWait(driver, PO_View.getTimeout()))
-//				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//tbody/tr")));
-//		if (!notExistsTrOnTbody) {
+		Boolean notExistsTrOnTbody = (new WebDriverWait(driver, PO_View.getTimeout()))
+				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//tbody/tr")));
+		if (!notExistsTrOnTbody) {
 			// Contamos el número de filas de notas
 			List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
 					PO_View.getTimeout());
@@ -74,8 +76,8 @@ public class PO_GestionarOfertasView extends PO_NavView {
 			}
 
 			return elementos.size();
-//		}
-//		return 0;
+		}
+		return 0;
 
 	}
 
