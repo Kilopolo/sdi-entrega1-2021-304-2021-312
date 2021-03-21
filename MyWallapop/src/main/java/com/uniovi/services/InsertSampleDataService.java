@@ -117,7 +117,7 @@ public class InsertSampleDataService {
 		Set<Offer> user5Offers = new HashSet<Offer>(){
 			{
 				add(new Offer("Oferta17","Oferta",10.0,user5));
-				add(new Offer("Oferta18","Oferta",20.0,user5));
+				add(new Offer("Oferta18","Oferta",85.0,user5));
 				add(new Offer("Oferta19","Oferta",15.0,user5));
 				add(new Offer("Oferta20","Oferta",110.0,user5));
 			}

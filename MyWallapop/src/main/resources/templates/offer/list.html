@@ -15,7 +15,7 @@
 	<!-- Barra de Navegación superior -->
 	<nav th:replace="fragments/nav" />
 
-	<div class="container">
+	<div id="offer-list" class="container">
 		<h2 th:text="#{offers.message}"></h2>
 		
 
@@ -27,7 +27,7 @@
 			<div class="form-group">
 				<input name="searchText" type ="text" class="form-control" size = "50">
 			</div>
-			<button type="submit" clas="btn btn-default" th:text="#{find.message}"></button>
+			<button id="search" type="submit" class="btn btn-default" th:text="#{find.message}"></button>
 		</form>
 		<div class="table-responsive">
 			<table class="table table-hover" th:fragment="tableOffers"
@@ -58,7 +58,7 @@
 							<div>
 								<div th:if="${offer.available}">
 									<a th:href="${'/offer/' + offer.id + '/available'}"
-										th:text="#{buy.message}"></a>
+										th:id="${offer.id}" th:text="#{buy.message}"></a>
 								</div>
 							</div>
 						</td>

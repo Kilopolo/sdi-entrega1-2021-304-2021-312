@@ -51,15 +51,15 @@ public class MyWallapopApplicationTests {
 		return driver;
 	}
 
+	private void navigateUrl(String URL, String pag) {
+			driver.navigate().to(URL + pag);
+	//		new WebDriverWait(driver, 2);
+		}
+
 	// Antes de cada prueba se navega al URL home de la aplicación
 	@BeforeEach
 	public void setUp() {
 		navigateUrl(URL, "");
-	}
-
-	private void navigateUrl(String URL, String pag) {
-		driver.navigate().to(URL + pag);
-//		new WebDriverWait(driver, 2);
 	}
 
 	// Después de cada prueba se borran las cookies del navegador
@@ -81,7 +81,38 @@ public class MyWallapopApplicationTests {
 		driver.quit();
 	}
 
-//-----------------------PRUEBAS-------------------
+/**
+	 * @param email
+	 * @param password
+	 */
+	private void insertOffersTo(String email, String password, int count) {
+		for (int i = 0; i < count; i++) {
+			driver.manage().deleteAllCookies();
+			navigateUrl(URL, "");
+			// entro en la vista de la lista de ofertas
+			PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/add");
+			// relleno el formulario
+			PO_GestionarOfertasView.fillAddOfferForm(driver, email, UUID.randomUUID().toString(),
+					"Oferta con una descripcion de mas de veinte caracteres......", 10 + "");
+		}
+		driver.manage().deleteAllCookies();
+		navigateUrl(URL, "");
+	}
+
+/**
+	 * 
+	 */
+	private void busquedaOferta(String busqueda) {
+		WebElement title = driver.findElement(By.name("searchText"));
+		title.click();
+		title.clear();
+		title.sendKeys(busqueda);
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPaginaxpath(driver, "//*[@id=\"search\"]", PO_View.getTimeout());
+		elementos.get(0).click();
+		SeleniumUtils.EsperaCargaPagina(driver, "free", "//*[@id=\"offer-list\"]", PO_View.getTimeout());
+	}
+
+	//-----------------------PRUEBAS-------------------
 	@Test
 	public void Prueba00Conexion() {
 
@@ -132,11 +163,9 @@ public class MyWallapopApplicationTests {
 	public void Prueba01() {
 		String email = "usario@prueba.com";
 		String password = "123456";
-		
+
 		PO_RegisterView.registerUser(driver, email, password);
 	}
-
-	
 
 	/**
 	 * Registro de Usuario con datos inválidos (email vacío, nombre vacío, apellidos
@@ -342,10 +371,10 @@ public class MyWallapopApplicationTests {
 
 		PO_UserListView.accesoUserList(driver);
 
-		PO_UserListView.deleteUser(driver, 0,1,2);
+		PO_UserListView.deleteUser(driver, 0, 1, 2);
 
 		PO_UserListView.checkNumberOfUsersOnList(driver, 4);
-		
+
 	}
 
 	/**
@@ -358,30 +387,27 @@ public class MyWallapopApplicationTests {
 
 		String email = "99999988F@wywallapop.com";
 		String password = "123456";
-		//registro un usuario porque lo borramos en pruebas anteriores
+		// registro un usuario porque lo borramos en pruebas anteriores
 //		PO_RegisterView.registerUser(driver, email, password);
-		//retorno a home
+		// retorno a home
 		driver.manage().deleteAllCookies();
 		navigateUrl(URL, "");
-		
-		//entro en la vista de la lista de ofertas
+
+		// entro en la vista de la lista de ofertas
 		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/ownList");
-		//recupero los elementos en la lista antes del add
+		// recupero los elementos en la lista antes del add
 		int elemeBeforeAdd = PO_GestionarOfertasView.checkNumberOfOffersOnList(driver, 0);
-		//retorno a home
+		// retorno a home
 		driver.manage().deleteAllCookies();
 		navigateUrl(URL, "");
-		//accedo al usuario y a sus ofertas add
+		// accedo al usuario y a sus ofertas add
 		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/add");
-		//relleno el formulario
-		PO_GestionarOfertasView.fillAddOfferForm(driver, email, UUID.randomUUID().toString(), "Oferta con una descripcion de mas de veinte caracteres......", 10+"");
-		//compruebo cuantos elementos hay ahora
+		// relleno el formulario
+		PO_GestionarOfertasView.fillAddOfferForm(driver, email, UUID.randomUUID().toString(),
+				"Oferta con una descripcion de mas de veinte caracteres......", 10 + "");
+		// compruebo cuantos elementos hay ahora
 		PO_GestionarOfertasView.checkNumberOfOffersOnList(driver, elemeBeforeAdd + 1);
-		
-		
-		
-		
-		
+
 	}
 
 	/**
@@ -396,14 +422,13 @@ public class MyWallapopApplicationTests {
 		String email = "99999988F@wywallapop.com";
 		String password = "123456";
 		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/add");
-		//relleno el formulario
-		PO_GestionarOfertasView.fillAddOfferForm(driver, email, "", "Oferta", 10+"");
+		// relleno el formulario
+		PO_GestionarOfertasView.fillAddOfferForm(driver, email, "", "Oferta", 10 + "");
 		// COmprobamos que da error de entrada
 		PO_View.getP();
 		// COmprobamos el error mirando que estemos en la misma pagina
 		SeleniumUtils.EsperaCargaPagina(driver, "free", "//*[@id=\"offer-add\"]", PO_View.getTimeout());
-		
-		
+
 	}
 
 	/**
@@ -412,12 +437,11 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba18() {
-		//accedo al usuario y a sus ofertas list
+		// accedo al usuario y a sus ofertas list
 		PO_GestionarOfertasView.accesoGestionOfertas(driver, "99999988F@wywallapop.com", "123456", "offer/list");
 		PO_GestionarOfertasView.checkNumberOfOffersOnList(driver, 4);
-		
 
-	}// TODO [Prueba19]
+	}
 
 	/**
 	 * Ir a la lista de ofertas, borrar la primera oferta de la lista, comprobar que
@@ -425,27 +449,19 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba19() {
-		
+
 		String email = "99999988F@wywallapop.com";
 		String password = "123456";
 
-		for (int i = 0; i < 3; i++) {
-			driver.manage().deleteAllCookies();
-			navigateUrl(URL, "");
-			//entro en la vista de la lista de ofertas
-			PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/add");
-			//relleno el formulario
-			PO_GestionarOfertasView.fillAddOfferForm(driver, email, UUID.randomUUID().toString(), "Oferta con una descripcion de mas de veinte caracteres......", 10+"");
-		}
+		insertOffersTo(email, password, 3);
 		
 		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/ownList");
-		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "free", "//a[contains(@href, ' /offer/delete/31 ')]",
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPaginaxpath(driver, "//*[@id=\"31\"]",
 				PO_View.getTimeout());
 		elementos.get(0).click();
-		
-		
-		
-	}// TODO [Prueba20]
+		assertTrue((new WebDriverWait(driver, PO_View.getTimeout())).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"31\"]"))));
+
+	}
 
 	/**
 	 * Ir a la lista de ofertas, borrar la última oferta de la lista, comprobar que
@@ -454,7 +470,15 @@ public class MyWallapopApplicationTests {
 	@Test
 	public void Prueba20() {
 
-	}// TODO [Prueba21]
+		String email = "99999988F@wywallapop.com";
+		String password = "123456";
+
+		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/ownList");
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPaginaxpath(driver, "//*[@id=\"34\"]",
+				PO_View.getTimeout());
+		elementos.get(0).click();
+		assertTrue((new WebDriverWait(driver, PO_View.getTimeout())).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"34\"]"))));
+	}
 
 	/**
 	 * Hacer una búsqueda con el campo vacío y comprobar que se muestra la página
@@ -462,8 +486,15 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba21() {
+		String email = "99999988F@wywallapop.com";
+		String password = "123456";
 
-	}// TODO [Prueba22]
+		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/list");
+		
+		busquedaOferta("");
+		
+		
+	}
 
 	/**
 	 * Hacer una búsqueda escribiendo en el campo un texto que no exista y comprobar
@@ -471,9 +502,17 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba22() {
+		String email = "99999988F@wywallapop.com";
+		String password = "123456";
 
-	}// TODO [Prueba23]
+		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/list");
+		
+		busquedaOferta("x");
+		assertTrue((new WebDriverWait(driver, PO_View.getTimeout())).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//tbody/tr"))));
+		
+	}
 
+	//TODO ARREGLAR test 23
 	/**
 	 * Sobre una búsqueda determinada (a elección del desarrollador), comprar una
 	 * oferta que deja un saldo positivo en el contador del comprador. Comprobar que
@@ -481,8 +520,19 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba23() {
+		String email = "99999988F@wywallapop.com";
+		String password = "123456";
 
-	}// TODO [Prueba24]
+		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/list");//*[@id="25"]
+		
+		busquedaOferta("Oferta19");
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPaginaxpath(driver, "//*[@id=\"24\"]",//   xpath=    //*[@id=\"23\"]
+				PO_View.getTimeout());
+		elementos.get(0).click();
+		
+//		PO_RegisterView.checkElement(driver, "text", "99999988F@wywallapop.com. [80.0 €]");
+		
+	}// TODO [Prueba24] ARREGLAR
 
 	/**
 	 * Sobre una búsqueda determinada (a elección del desarrollador), comprar una
@@ -492,7 +542,17 @@ public class MyWallapopApplicationTests {
 	@Test
 	public void Prueba24() {
 
-	}// TODO [Prueba25]
+		String email = "99999988F@wywallapop.com";
+		String password = "123456";
+
+		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/list");
+		
+		busquedaOferta("Oferta18");
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPaginaxpath(driver, "//*[@id=\"23\"]",
+				PO_View.getTimeout());
+		elementos.get(0).click();
+		
+	}
 
 	/**
 	 * Sobre una búsqueda determinada (a elección del desarrollador), intentar
@@ -501,8 +561,20 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba25() {
+		String email = "99999988F@wywallapop.com";
+		String password = "123456";
 
-	}// TODO [Prueba26]
+		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/list");
+		
+		busquedaOferta("Oferta20");
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPaginaxpath(driver, "//*[@id=\"25\"]",
+				PO_View.getTimeout());
+		elementos.get(0).click();
+		
+
+		PO_RegisterView.checkKey(driver, "cantBuy.message", PO_Properties.getSPANISH());
+		
+	}// TODO [Prueba26] ARREGLAR
 
 	/**
 	 * Ir a la opción de ofertas compradas del usuario y mostrar la lista. Comprobar
@@ -510,8 +582,17 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba26() {
+		String email = "99999988F@wywallapop.com";
+		String password = "123456";
 
-	}// TODO [Prueba27]
+		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/buyView");
+		
+		PO_GestionarOfertasView.checkNumberOfOffersOnList(driver, 2);
+//		driver.manage().deleteAllCookies();
+//		navigateUrl(URL, "");
+		
+
+	}// TODO [Prueba27] ARREGLAR
 
 	/**
 	 * Visualizar al menos cuatro páginas haciendo el cambio español/inglés/español
@@ -521,8 +602,24 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba27() {
+		
+		String email = "99999988F@wywallapop.com";
+		String password = "123456";
 
-	}// TODO [Prueba28]
+		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/list");
+		
+
+		// Pinchamos en la opción de menu de Notas: //li[contains(@id, 'marks-menu')]/a
+		List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id, 'marks-menu')]/a");
+		elementos.get(0).click();
+		// Pinchamos en la opción de lista de notas.
+		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'mark/list')]");
+		elementos.get(0).click();
+		// Esperamos a que se muestren los enlaces de paginacion la lista de notas
+		elementos = PO_View.checkElement(driver, "free", "//a[contains(@class, 'page-link')]");
+		// Nos vamos a la última página
+		elementos.get(3).click();
+	}
 
 	/**
 	 * Intentar acceder sin estar autenticado a la opción de listado de usuarios del
@@ -530,8 +627,9 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba28() {
-
-	}// TODO [Prueba29]
+		navigateUrl(URL, "/user/list");
+				PO_RegisterView.checkKey(driver, "login.message", PO_Properties.getSPANISH());
+	}
 
 	/**
 	 * Intentar acceder sin estar autenticado a la opción de listado de ofertas
@@ -539,7 +637,8 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba29() {
-
+		navigateUrl(URL, "/offer/list");
+		PO_RegisterView.checkKey(driver, "login.message", PO_Properties.getSPANISH());
 	}// TODO [Prueba30]
 
 	/**
@@ -549,6 +648,10 @@ public class MyWallapopApplicationTests {
 	 */
 	@Test
 	public void Prueba30() {
+		PO_PrivateView.login(driver, "pablo@wywallapop.com", "123456", "Esta es la parte privada de la web");
+		PO_HomeView.checkWelcome(driver, PO_Properties.getSPANISH());
+		navigateUrl(URL, "/user/list");
+		
 
 	}
 	// ----------------OPCIONALES------------------
