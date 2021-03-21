@@ -1,5 +1,7 @@
 package com.uniovi.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -32,6 +34,9 @@ public class User {
 	private boolean selected = false;
 	
 	@OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
+	private Set<Offer> boughtOffers;
+	
+	@OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
 	private Set<Offer> offers;
 
 	public User() {
@@ -53,6 +58,10 @@ public class User {
 	
 
 	
+	public Set<Offer> getBoughtOffers() {
+		return boughtOffers;
+	}
+
 	public boolean isSelected() {
 		return selected;
 	}
@@ -65,6 +74,10 @@ public class User {
 	public void setOffers(Set<Offer> offers) {
 		this.offers = offers;
 	}
+	public void setBoughtOffers(Set<Offer> boughtOffers) {
+		this.boughtOffers = boughtOffers;
+	}
+
 	//	public String getPassword2() {
 	public boolean getEnoughMoney() {
 		return enoughMoney;

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uniovi.entities.Offer;
 import com.uniovi.entities.User;
@@ -42,8 +43,14 @@ public class OfferController {
 	
 	
 	@RequestMapping("/offer/list")
-	public String getList(Model model){
-		model.addAttribute("offerList", offersService.getOffers());
+	public String getList(Model model, @RequestParam(value="", required=false) String searchText){
+		
+		if(searchText != null && !searchText.isEmpty()) {
+			model.addAttribute("offerList", offersService.searchOffersByTitle(searchText));
+		}
+		else {
+			model.addAttribute("offerList", offersService.getOffers());
+		}
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String email = auth.getName();
 		User activeUser = usersService.getUserByEmail(email);
@@ -61,6 +68,16 @@ public class OfferController {
 		User activeUser = usersService.getUserByEmail(email);
 		httpSession.setAttribute("activeUser",activeUser);
 		return "offer/ownList";
+	}
+	
+	@RequestMapping("/offer/buyView")
+	public String getBuyViewList(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String email = auth.getName();
+		User activeUser = usersService.getUserByEmail(email);
+		model.addAttribute("offerList", offersService.getBoughtOffers(activeUser));
+		httpSession.setAttribute("activeUser",activeUser);
+		return "offer/buyView";
 	}
 	
 	
@@ -88,6 +105,7 @@ public class OfferController {
 			return "/offer/add";
 		}
 		offer.setOrderDate(new Date());
+		offer.setAvailable(true);
 		offersService.addOffer(offer);
 		return "redirect:/offer/ownList";
 	}
@@ -113,6 +131,9 @@ public class OfferController {
 			offersService.setOfferAvailable(false, id);
 			activeUser.setMoney(money-m);
 			usersService.editUser(activeUser);
+			offer.setNewOwner(activeUser);
+			offer.setAvailable(false);
+			offersService.editOffer(offer);
 			httpSession.setAttribute("activeUser",activeUser);
 		}
 		else {
@@ -134,9 +155,13 @@ public class OfferController {
 		offersService.setOfferAvailable(true, id);
 		activeUser.setMoney(money+m);
 		activeUser.setEnoughMoney(true);
+		offer.setAvailable(true);
+		offer.setNewOwner(null);
+		activeUser.getBoughtOffers().remove(offer);
 		usersService.editUser(activeUser);
+		offersService.editOffer(offer);
 		httpSession.setAttribute("activeUser",activeUser);
-		return "redirect:/offer/list";
+		return "redirect:/offer/buyView";
 	}
 	
 }

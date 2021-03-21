@@ -27,6 +27,18 @@ public class Offer {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "owner_id")
+	private User newOwner;
+
+	public User getNewOwner() {
+		return newOwner;
+	}
+
+	public void setNewOwner(User newOwner) {
+		this.newOwner = newOwner;
+	}
 
 	public Offer() {
 	}
