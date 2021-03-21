@@ -4,7 +4,7 @@
 <body>
 	<!-- Barra de Navegación superior -->
 	<nav th:replace="fragments/nav" />
-	<div class="container">
+	<div th:id="user-list" class="container">
 		<h2 th:text="#{users.message}"></h2>
 		
 		<div class="table-responsive">

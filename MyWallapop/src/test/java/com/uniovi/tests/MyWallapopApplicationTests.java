@@ -650,6 +650,7 @@ public class MyWallapopApplicationTests {
 		PO_PrivateView.login(driver, "pablo@wywallapop.com", "123456", "Esta es la parte privada de la web");
 		PO_HomeView.checkWelcome(driver, PO_Properties.getSPANISH());
 		navigateUrl(URL, "/user/list");
+		new WebDriverWait(driver, PO_View.getTimeout()).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"user-list\"]")));
 		
 
 	}
