@@ -3,6 +3,9 @@ package com.uniovi.services;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.uniovi.entities.Offer;
@@ -15,15 +18,20 @@ public class OfferService {
 	@Autowired
 	OffersRepository offersRepository;
 	
-	public List<Offer> getOffers(){
-		List<Offer> offers = new ArrayList<Offer>();
-		offersRepository.findAll().forEach(offers::add);
+	public Page<Offer> getOffers(Pageable p, User user){
+		Page<Offer> offers = offersRepository.findAllforUser(p, user);
 		return offers;
 	}
 	
-	public List<Offer> getBoughtOffers(User owner){
-		List<Offer> boffers = new ArrayList<Offer>();
-		offersRepository.findBoughtOffers(owner).forEach(boffers::add);
+	public List<Offer> getOffers(){
+		List<Offer> offers = new ArrayList<Offer>();
+		offersRepository.findAll().forEach(offers::add);;
+		return offers;
+	}
+	
+	public Page<Offer> getBoughtOffers(Pageable pageable,User owner){
+		Page<Offer> boffers = new PageImpl<Offer>(new LinkedList<Offer>());
+		boffers = offersRepository.findBoughtOffers(pageable, owner);
 		return boffers;
 	}
 	
@@ -43,14 +51,16 @@ public class OfferService {
 		offersRepository.updateAvailable(av, id);
 	}
 	
-	public List<Offer> searchOffersByTitle(String searchText){
-		List<Offer> listOffers = new ArrayList<Offer>();
-		listOffers = offersRepository.searchByTitle(searchText);
-		return listOffers;
+	public Page<Offer> searchOffersByTitle(Pageable p, String searchText){
+		searchText = "%"+searchText+"%";
+		Page<Offer> boffers = new PageImpl<Offer>(new LinkedList<Offer>());
+		boffers = offersRepository.searchByTitle(p, searchText);
+		return boffers;
 	}
 
 	public void editOffer(Offer offer) {
 		offersRepository.save(offer);
 		
 	}
+
 }

@@ -33,7 +33,7 @@
 						<li><a href="/offer/list" th:text=#{showOffers.message}></a></li>
 					</ul></li>
 					
-				<li sec:authorize="isAuthenticated() && hasRole('ROLE_USER')"><a href="/offer/buyView" th:text="#{buyView.message}">
+				<li id="buyButton" sec:authorize="isAuthenticated() && hasRole('ROLE_USER')"><a href="/offer/buyView" th:text="#{buyView.message}">
 				</a></li>
 				
 				
