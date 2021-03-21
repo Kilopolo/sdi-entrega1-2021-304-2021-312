@@ -1,12 +1,9 @@
 package com.uniovi.tests;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 import org.junit.AfterClass;
@@ -24,8 +21,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.uniovi.entities.Offer;
-import com.uniovi.entities.User;
 import com.uniovi.tests.pageobjects.PO_GestionarOfertasView;
 import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_LoginView;
@@ -490,7 +485,7 @@ public class MyWallapopApplicationTests {
 
 	}
 
-	// TODO ARREGLAR test 23
+	// 
 	/**
 	 * Sobre una búsqueda determinada (a elección del desarrollador), comprar una
 	 * oferta que deja un saldo positivo en el contador del comprador. Comprobar que
@@ -511,7 +506,7 @@ public class MyWallapopApplicationTests {
 
 //		PO_RegisterView.checkElement(driver, "text", "99999988F@wywallapop.com. [80.0 €]");
 
-	}// TODO [Prueba24] ARREGLAR
+	}
 
 	/**
 	 * Sobre una búsqueda determinada (a elección del desarrollador), comprar una
@@ -552,7 +547,7 @@ public class MyWallapopApplicationTests {
 
 		PO_RegisterView.checkKey(driver, "cantBuy.message", PO_Properties.getSPANISH());
 
-	}// TODO [Prueba26] ARREGLAR
+	}
 
 	/**
 	 * Ir a la opción de ofertas compradas del usuario y mostrar la lista. Comprobar
@@ -569,7 +564,7 @@ public class MyWallapopApplicationTests {
 //		driver.manage().deleteAllCookies();
 //		navigateUrl(URL, "");
 
-	}// TODO [Prueba27] ARREGLAR anteriores para poder ver bien esta
+	}
 
 	/**
 	 * Visualizar al menos cuatro páginas haciendo el cambio español/inglés/español
@@ -613,8 +608,7 @@ public class MyWallapopApplicationTests {
 	public void Prueba29() {
 		navigateUrl(URL, "/offer/list");
 		PO_RegisterView.checkKey(driver, "login.message", PO_Properties.getSPANISH());
-	}// TODO [Prueba30]
-
+	}
 	/**
 	 * Estando autenticado como usuario estándar intentar acceder a la opción de
 	 * listado de usuarios del administrador. Se deberá indicar un mensaje de acción
@@ -629,85 +623,5 @@ public class MyWallapopApplicationTests {
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"user-list\"]")));
 
 	}
-	// ----------------OPCIONALES------------------
 
-	// TODO [Prueba31]
-	/**
-	 * Sobre una búsqueda determinada de ofertas (a elección de desarrollador),
-	 * enviar un mensaje a una oferta concreta. Se abriría dicha conversación por
-	 * primera vez. Comprobar que el mensaje aparece en el listado de mensajes.
-	 */
-	@Test
-	public void Prueba31() {
-		fail("Not yet implemented");
-	}// TODO [Prueba32]
-
-	/**
-	 * Sobre el listado de conversaciones enviar un mensaje a una conversación ya
-	 * abierta. Comprobar que el mensaje aparece en la lista de mensajes.
-	 */
-	@Test
-	public void Prueba32() {
-		fail("Not yet implemented");
-	}// TODO [Prueba33]
-
-	/**
-	 * Mostrar el listado de conversaciones ya abiertas. Comprobar que el listado
-	 * contiene las conversaciones que deben ser.
-	 */
-	@Test
-	public void Prueba33() {
-		fail("Not yet implemented");
-	}// TODO [Prueba34]
-
-	/**
-	 * Sobre el listado de conversaciones ya abiertas. Pinchar el enlace Eliminar de
-	 * la primera y comprobar que el listado se actualiza correctamente.
-	 */
-	@Test
-	public void Prueba34() {
-		fail("Not yet implemented");
-	}// TODO [Prueba35]
-
-	/**
-	 * Sobre el listado de conversaciones ya abiertas, pulsar el enlace Eliminar de
-	 * la última y comprobar que el listado se actualiza correctamente.
-	 */
-	@Test
-	public void Prueba35() {
-		fail("Not yet implemented");
-	}// TODO [Prueba36]
-
-	/**
-	 * Al crear una oferta marcar dicha oferta como destacada y a continuación
-	 * comprobar: i) que aparece en el listado de ofertas destacadas para los
-	 * usuarios y que el saldo del usuario se actualiza adecuadamente en la vista
-	 * del ofertante (-20).
-	 */
-	@Test
-	public void Prueba36() {
-		fail("Not yet implemented");
-	}// TODO [Prueba37]
-
-	/**
-	 * Sobre el listado de ofertas de un usuario con menos de 20 euros de saldo,
-	 * pinchar en el enlace Destacada y a continuación comprobar: que aparece en el
-	 * listado de ofertas destacadas para los usuarios y que el saldo del usuario se
-	 * actualiza adecuadamente en la vista del ofertante (-20).
-	 * 
-	 */
-	@Test
-	public void Prueba37() {
-		fail("Not yet implemented");
-	}// TODO [Prueba38]
-
-	/**
-	 * Sobre el listado de ofertas de un usuario con menos de 20 euros de saldo,
-	 * pinchar en el enlace Destacada y a continuación comprobar que se muestra el
-	 * mensaje de saldo no suficiente.
-	 */
-	@Test
-	public void Prueba38() {
-		fail("Not yet implemented");
-	}
 }
