@@ -1,5 +1,8 @@
 package com.uniovi.controllers;
 
+
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,15 +10,19 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uniovi.entities.Offer;
 import com.uniovi.entities.User;
 import com.uniovi.services.OfferService;
 import com.uniovi.services.UsersService;
+import com.uniovi.validators.AddOfferFormValidator;
 
 @Controller
 public class OfferController {
@@ -27,14 +34,23 @@ public class OfferController {
 	UsersService usersService;
 	
 	@Autowired
+	AddOfferFormValidator aofv;
+	
+	@Autowired
 	private HttpSession httpSession;
 	
 	private boolean enough = true;
 	
 	
 	@RequestMapping("/offer/list")
-	public String getList(Model model){
-		model.addAttribute("offerList", offersService.getOffers());
+	public String getList(Model model, @RequestParam(value="", required=false) String searchText){
+		
+		if(searchText != null && !searchText.isEmpty()) {
+			model.addAttribute("offerList", offersService.searchOffersByTitle(searchText));
+		}
+		else {
+			model.addAttribute("offerList", offersService.getOffers());
+		}
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String email = auth.getName();
 		User activeUser = usersService.getUserByEmail(email);
@@ -54,10 +70,21 @@ public class OfferController {
 		return "offer/ownList";
 	}
 	
+	@RequestMapping("/offer/buyView")
+	public String getBuyViewList(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String email = auth.getName();
+		User activeUser = usersService.getUserByEmail(email);
+		model.addAttribute("offerList", offersService.getBoughtOffers(activeUser));
+		httpSession.setAttribute("activeUser",activeUser);
+		return "offer/buyView";
+	}
+	
 	
 	@RequestMapping(value = "/offer/add")
 	public String getOffer(Model model){
 		model.addAttribute("userList", usersService.getUsers());
+		model.addAttribute("offer",new Offer());
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String email = auth.getName();
 		User activeUser = usersService.getUserByEmail(email);
@@ -65,8 +92,20 @@ public class OfferController {
 		return "offer/add";
 	}
 	
+	
 	@RequestMapping(value = "/offer/add", method = RequestMethod.POST)
-	public String setOffer(@ModelAttribute Offer offer){
+	public String setOffer(Model model, @Validated Offer offer, BindingResult result){
+		aofv.validate(offer, result);
+		if(result.hasErrors()) {
+			model.addAttribute("userList", usersService.getUsers());
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			String email = auth.getName();
+			User activeUser = usersService.getUserByEmail(email);
+			httpSession.setAttribute("activeUser",activeUser);
+			return "/offer/add";
+		}
+		offer.setOrderDate(new Date());
+		offer.setAvailable(true);
 		offersService.addOffer(offer);
 		return "redirect:/offer/ownList";
 	}
@@ -92,6 +131,9 @@ public class OfferController {
 			offersService.setOfferAvailable(false, id);
 			activeUser.setMoney(money-m);
 			usersService.editUser(activeUser);
+			offer.setNewOwner(activeUser);
+			offer.setAvailable(false);
+			offersService.editOffer(offer);
 			httpSession.setAttribute("activeUser",activeUser);
 		}
 		else {
@@ -113,9 +155,13 @@ public class OfferController {
 		offersService.setOfferAvailable(true, id);
 		activeUser.setMoney(money+m);
 		activeUser.setEnoughMoney(true);
+		offer.setAvailable(true);
+		offer.setNewOwner(null);
+		activeUser.getBoughtOffers().remove(offer);
 		usersService.editUser(activeUser);
+		offersService.editOffer(offer);
 		httpSession.setAttribute("activeUser",activeUser);
-		return "redirect:/offer/list";
+		return "redirect:/offer/buyView";
 	}
 	
 }
