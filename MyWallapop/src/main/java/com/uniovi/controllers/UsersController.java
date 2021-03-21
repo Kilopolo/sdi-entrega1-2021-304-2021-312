@@ -1,7 +1,5 @@
 package com.uniovi.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,7 +20,6 @@ import com.uniovi.entities.User;
 import com.uniovi.services.RolesService;
 import com.uniovi.services.SecurityService;
 import com.uniovi.services.UsersService;
-import com.uniovi.validators.LoginFormValidator;
 import com.uniovi.validators.SignUpFormValidator;
 
 
@@ -51,7 +48,6 @@ public class UsersController {
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String signup(@ModelAttribute @Validated User user, BindingResult result) {
 		
-//		System.out.println(user.getEmail(),user.getPasswordConfirm());
 		
 		signUpFormValidator.validate(user, result);
 		if (result.hasErrors()) {
@@ -67,9 +63,7 @@ public class UsersController {
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signup(Model model) {
 		model.addAttribute("user", new User());
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String email = auth.getName();
-		User activeUser = usersService.getUserByEmail(email);
+		User activeUser = getActiveUser();
 		httpSession.setAttribute("activeUser",activeUser);
 		return "signup";
 	}
@@ -97,17 +91,21 @@ public class UsersController {
 	@RequestMapping(value = "/user/home")
 	public String getUserHome(Model model) {
 		model.addAttribute("rolesList", rolesService.getRoles());
+		User activeUser = getActiveUser();
+		model.addAttribute("user", activeUser);
+		return "user/home";
+	}
+
+	private User getActiveUser() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String email = auth.getName();
 		User activeUser = usersService.getUserByEmail(email);
-		model.addAttribute("user", activeUser);
-		return "user/home";
+		return activeUser;
 	}
 	
 	@RequestMapping(value = "/user/add")
 	public String getUser(Model model) {
 		//TODO comprobar que no haga falta la userlist
-//		model.addAttribute("usersList", usersService.getUsers());
 		model.addAttribute("rolesList", rolesService.getRoles());
 		return "user/add";
 	}
@@ -126,12 +124,7 @@ public class UsersController {
 	    	Long uid = (long) Integer.parseInt( ids[i]);
 	    	usersService.deleteUser(uid);
 		}
-//		List<User>users = (List<User>) model.getAttribute("usersList");
-//	    for (User user : users) {
-//			if (user.isSelected()) {
-//				usersService.deleteUser(user.getId());
-//			}
-//		}
+
 	    return "redirect:/user/list";
 	}
 	
@@ -143,8 +136,6 @@ public class UsersController {
 	
 	@RequestMapping(value = "/user/list")
 	public String getLista(Model model) {
-		
-		List<User> listaSinAdmin = new ArrayList<User>();
 		model.addAttribute("usersList", usersService.getUsers());
 		boolean myBooleanVariable = false;
 	    model.addAttribute("myBooleanVariable", myBooleanVariable);

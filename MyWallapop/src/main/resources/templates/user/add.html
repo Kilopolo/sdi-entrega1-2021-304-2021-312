@@ -2,10 +2,10 @@
 <html lang="en">
 <head th:replace="fragments/head" />
 <body>
-	<!-- Barra de Navegación superior -->
+	<!-- Barra de Navegacion superior -->
 	<nav th:replace="fragments/nav" />
 	<div class="container">
-		<h2>Agregar usuario</h2>
+		<h2 th:text="#{addUser.message}"></h2>
 
 		<form class="form-horizontal" method="post" action="/user/add">
 

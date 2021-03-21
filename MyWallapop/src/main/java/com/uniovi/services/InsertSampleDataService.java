@@ -71,6 +71,11 @@ public class InsertSampleDataService {
 		user8.setRole(rolesService.getRoles()[0]);
 		
 		Set<Offer> user1Offers = new HashSet<Offer>(){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			{
 				add(new Offer("Oferta1","Oferta1",10.0,user1));
 				add(new Offer("Oferta2","Oferta2",20.0,user1));
@@ -82,6 +87,11 @@ public class InsertSampleDataService {
 		user1.setOffers(user1Offers);
 		
 		Set<Offer> user2Offers = new HashSet<Offer>(){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			{
 				add(new Offer("Oferta5","Oferta5",10.0,user2));
 				add(new Offer("Oferta6","Oferta6",20.0,user2));
@@ -93,6 +103,11 @@ public class InsertSampleDataService {
 		user2.setOffers(user2Offers);
 		
 		Set<Offer> user3Offers = new HashSet<Offer>(){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			{
 				add(new Offer("Oferta9","Oferta9",10.0,user3));
 				add(new Offer("Oferta10","Oferta10",20.0,user3));
@@ -104,6 +119,11 @@ public class InsertSampleDataService {
 		user3.setOffers(user3Offers);
 		
 		Set<Offer> user4Offers = new HashSet<Offer>(){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			{
 				add(new Offer("Oferta13","Oferta",10.0,user4));
 				add(new Offer("Oferta14","Oferta",20.0,user4));
@@ -115,6 +135,11 @@ public class InsertSampleDataService {
 		user4.setOffers(user4Offers);
 		
 		Set<Offer> user5Offers = new HashSet<Offer>(){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			{
 				add(new Offer("Oferta17","Oferta",10.0,user5));
 				add(new Offer("Oferta18","Oferta",85.0,user5));
