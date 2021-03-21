@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeoutException;
 
 import org.junit.AfterClass;
@@ -298,7 +299,7 @@ public class MyWallapopApplicationTests {
 
 		PO_UserListView.accesoUserList(driver);
 
-		PO_UserListView.checkNumberOfUsersOnList(driver, 10);
+		PO_UserListView.checkNumberOfUsersOnList(driver, 9);
 
 	}
 
@@ -312,7 +313,7 @@ public class MyWallapopApplicationTests {
 
 		PO_UserListView.deleteUser(driver, 0);
 
-		PO_UserListView.checkNumberOfUsersOnList(driver, 9);
+		PO_UserListView.checkNumberOfUsersOnList(driver, 8);
 
 	}
 
@@ -326,9 +327,9 @@ public class MyWallapopApplicationTests {
 
 		PO_UserListView.accesoUserList(driver);
 
-		PO_UserListView.deleteUser(driver, 8);
+		PO_UserListView.deleteUser(driver, 7);
 
-		PO_UserListView.checkNumberOfUsersOnList(driver, 8);
+		PO_UserListView.checkNumberOfUsersOnList(driver, 7);
 
 	}
 
@@ -341,11 +342,11 @@ public class MyWallapopApplicationTests {
 
 		PO_UserListView.accesoUserList(driver);
 
-		PO_UserListView.deleteUser(driver, 7,2,4);
+		PO_UserListView.deleteUser(driver, 6,2,4);
 
-		PO_UserListView.checkNumberOfUsersOnList(driver, 5);
+		PO_UserListView.checkNumberOfUsersOnList(driver, 4);
 		
-	}// TODO [Prueba16]
+	}
 
 	/**
 	 * Ir al formulario de alta de oferta, rellenarla con datos válidos y pulsar el
@@ -358,12 +359,26 @@ public class MyWallapopApplicationTests {
 		String email = "usario@prueba.com";
 		String password = "123456";
 		//registro un usuario porque lo borramos en pruebas anteriores
-		PO_RegisterView.registerUser(driver, email, password);
+		//TODO DESCOMENTAR PARA RELEASE
+//		PO_RegisterView.registerUser(driver, email, password);
+		//retorno a home
 		driver.manage().deleteAllCookies();
 		navigateUrl(URL, "");
 		
+		//entro en la vista de la lista de ofertas
+		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/ownList");
+		//recupero los elementos en la lista antes del add
+		int elemeBeforeAdd = PO_GestionarOfertasView.checkNumberOfOffersOnList(driver, null);
+		//retorno a home
+		driver.manage().deleteAllCookies();
+		navigateUrl(URL, "");
 		//accedo al usuario recien creado y a sus ofertas add
 		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/add");
+		//relleno el formulario
+		PO_GestionarOfertasView.fillAddOfferForm(driver, email, UUID.randomUUID().toString(), "Oferta", 0+"");
+		//compruebo cuantos elementos hay ahora
+		PO_GestionarOfertasView.checkNumberOfOffersOnList(driver, elemeBeforeAdd + 1);
+		
 		
 		
 		
@@ -379,6 +394,8 @@ public class MyWallapopApplicationTests {
 	@Test
 	public void Prueba17() {
 
+		PO_GestionarOfertasView.accesoGestionOfertas(driver, "usario@prueba.com", "123456", "offer/add");
+		
 	}// TODO [Prueba18]
 
 	/**
