@@ -547,7 +547,7 @@ public class MyWallapopApplicationTests {
 		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/list");
 		
 		busquedaOferta("Oferta18");
-		List<WebElement> elementos = SeleniumUtils.EsperaCargaPaginaxpath(driver, "//*[@id=\"23\"]",
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPaginaxpath(driver, "//*[@id=\"25\"]",
 				PO_View.getTimeout());
 		elementos.get(0).click();
 		
@@ -566,7 +566,7 @@ public class MyWallapopApplicationTests {
 		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/list");
 		
 		busquedaOferta("Oferta20");
-		List<WebElement> elementos = SeleniumUtils.EsperaCargaPaginaxpath(driver, "//*[@id=\"25\"]",
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPaginaxpath(driver, "//*[@id=\"23\"]",
 				PO_View.getTimeout());
 		elementos.get(0).click();
 		
@@ -585,13 +585,13 @@ public class MyWallapopApplicationTests {
 		String password = "123456";
 
 		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/buyView");
-		
+		//compruebo que se hayan realizado 2 compras
 		PO_GestionarOfertasView.checkNumberOfOffersOnList(driver, 2);
 //		driver.manage().deleteAllCookies();
 //		navigateUrl(URL, "");
 		
 
-	}// TODO [Prueba27] ARREGLAR
+	}// TODO [Prueba27] ARREGLAR anteriores para poder ver bien esta
 
 	/**
 	 * Visualizar al menos cuatro páginas haciendo el cambio español/inglés/español
@@ -606,18 +606,14 @@ public class MyWallapopApplicationTests {
 		String password = "123456";
 
 		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/list");
-		
 
-		// Pinchamos en la opción de menu de Notas: //li[contains(@id, 'marks-menu')]/a
-		List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id, 'marks-menu')]/a");
-		elementos.get(0).click();
-		// Pinchamos en la opción de lista de notas.
-		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'mark/list')]");
-		elementos.get(0).click();
 		// Esperamos a que se muestren los enlaces de paginacion la lista de notas
-		elementos = PO_View.checkElement(driver, "free", "//a[contains(@class, 'page-link')]");
+		List<WebElement>elementos = PO_View.checkElement(driver, "free", "//a[contains(@class, 'page-link')]");
 		// Nos vamos a la última página
 		elementos.get(3).click();
+		elementos = PO_View.checkElement(driver, "free",
+				"//td[contains(text(), 'Oferta17')]");
+		elementos.get(0).click();
 	}
 
 	/**
