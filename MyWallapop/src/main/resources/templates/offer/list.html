@@ -47,7 +47,7 @@
 				</thead>
 				<tbody>
 					<tr th:each="offer : ${offerList}"
-						th:if="${!offer.user.equals(#session.getAttribute('activeUser')) && offer.available == true}">
+						th:if="${offer.available == true}">
 						<td th:text="${offer.id}"></td>
 						<td th:text="${offer.user.email}"></td>
 						<td th:text="${offer.title}"></td>
@@ -60,16 +60,13 @@
 									<a th:href="${'/offer/' + offer.id + '/available'}"
 										th:text="#{buy.message}"></a>
 								</div>
-								<div th:unless="${offer.available}">
-									<a th:href="${'/offer/' + offer.id + '/notAvailable'}"
-										th:text="#{sell.message}"></a>
-								</div>
 							</div>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
+		<footer th:replace="fragments/paginacion" />
 	</div>
 	<footer th:replace="fragments/footer" />
 

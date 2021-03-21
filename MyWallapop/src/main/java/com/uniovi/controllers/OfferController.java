@@ -2,10 +2,14 @@ package com.uniovi.controllers;
 
 
 import java.util.Date;
+import java.util.LinkedList;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -43,17 +47,20 @@ public class OfferController {
 	
 	
 	@RequestMapping("/offer/list")
-	public String getList(Model model, @RequestParam(value="", required=false) String searchText){
-		
-		if(searchText != null && !searchText.isEmpty()) {
-			model.addAttribute("offerList", offersService.searchOffersByTitle(searchText));
-		}
-		else {
-			model.addAttribute("offerList", offersService.getOffers());
-		}
+	public String getList(Pageable p, Model model, @RequestParam(value="", required=false) String searchText){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String email = auth.getName();
 		User activeUser = usersService.getUserByEmail(email);
+		Page<Offer> boffers = new PageImpl<Offer>(new LinkedList<Offer>());
+		if(searchText != null && !searchText.isEmpty()) {
+			boffers= offersService.searchOffersByTitle(p, searchText);
+		}
+		else {
+			boffers=  offersService.getOffers(p, activeUser);
+		}
+		model.addAttribute("offerList",boffers.getContent());
+		model.addAttribute("page", boffers);
+		
 		if(!enough)
 			activeUser.setEnoughMoney(false);
 		httpSession.setAttribute("activeUser",activeUser);
@@ -71,12 +78,17 @@ public class OfferController {
 	}
 	
 	@RequestMapping("/offer/buyView")
-	public String getBuyViewList(Model model){
+	public String getBuyViewList(Model model, Pageable p){
+		Page<Offer> boffers = new PageImpl<Offer>(new LinkedList<Offer>());
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String email = auth.getName();
 		User activeUser = usersService.getUserByEmail(email);
-		model.addAttribute("offerList", offersService.getBoughtOffers(activeUser));
+		boffers =  offersService.getBoughtOffers(p , activeUser);
+		
 		httpSession.setAttribute("activeUser",activeUser);
+		
+		model.addAttribute("offerList", boffers.getContent());
+		model.addAttribute("page",boffers);
 		return "offer/buyView";
 	}
 	

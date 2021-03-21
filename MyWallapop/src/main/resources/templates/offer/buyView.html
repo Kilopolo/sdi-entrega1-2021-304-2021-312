@@ -15,8 +15,11 @@
 	<!-- Barra de Navegación superior -->
 	<nav th:replace="fragments/nav" />
 
+
+
 	<div class="container">
 		<h2 th:text="#{boughtOffers.message}"></h2>
+
 
 		<div class="table-responsive">
 			<table class="table table-hover" th:fragment="tableOffers"
@@ -42,15 +45,16 @@
 						<td th:text="${offer.orderDate}"></td>
 						<td th:text="${offer.amount}"></td>
 						<td>
-						<div th:unless="${offer.available}">
-							<a th:href="${'/offer/' + offer.id + '/notAvailable'}"
-										th:text="#{sell.message}"></a>
-						</div>
+							<div th:unless="${offer.available}">
+								<a th:href="${'/offer/' + offer.id + '/notAvailable'}"
+									th:text="#{sell.message}"></a>
+							</div>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
+		<footer th:replace="fragments/paginacion" />
 	</div>
 	<footer th:replace="fragments/footer" />
 

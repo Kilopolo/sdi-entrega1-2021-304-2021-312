@@ -39,11 +39,8 @@ public class CustomConfiguration implements WebMvcConfigurer {
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
 		int page = 0;
 		int size = 5;
-		
 		PageableHandlerMethodArgumentResolver resolver = new PageableHandlerMethodArgumentResolver();
-//		resolver.setOneIndexedParameters(true); //inyect to resolve
 		resolver.setFallbackPageable(PageRequest.of(page, size));
 		argumentResolvers.add(resolver);
-//		super.addArgumentResolvers(argumentResolvers);
 	}
 }
