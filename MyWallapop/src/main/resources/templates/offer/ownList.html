@@ -42,7 +42,7 @@
 						<td th:text="${offer.details}"></td>
 						<td th:text="${offer.orderDate}"></td>
 						<td th:text="${offer.amount}"></td>
-						<td><a  th:text="#{delete.message}" th:href= "${'/offer/delete/'+ offer.id}"></a></td>
+						<td><a th:id="${offer.id}" th:text="#{delete.message}" th:href= "${'/offer/delete/'+ offer.id}"></a></td>
 					</tr>
 				</tbody>
 			</table>
