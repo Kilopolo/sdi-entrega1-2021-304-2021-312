@@ -63,21 +63,28 @@ public class PO_GestionarOfertasView extends PO_NavView {
 	 * @param expectedSize
 	 */
 	public static int checkNumberOfOffersOnList(WebDriver driver, Integer expectedSize) {
+//		Boolean notExistsTrOnTbody = null;
+		if (expectedSize==0) {
+//			notExistsTrOnTbody = (new WebDriverWait(driver, PO_View.getTimeout()))
+//					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//tbody/tr")));
+			return 0;
+		}else {
+//			if (!notExistsTrOnTbody) {
+				// Contamos el número de filas de notas
+				List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
+						PO_View.getTimeout());
 
-		Boolean notExistsTrOnTbody = (new WebDriverWait(driver, PO_View.getTimeout()))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//tbody/tr")));
-		if (!notExistsTrOnTbody) {
-			// Contamos el número de filas de notas
-			List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
-					PO_View.getTimeout());
+				if (expectedSize != null) {
+					assertTrue(elementos.size() == expectedSize);
+				}
 
-			if (expectedSize != null) {
-				assertTrue(elementos.size() == expectedSize);
-			}
-
-			return elementos.size();
+				return elementos.size();
+//			}
 		}
-		return 0;
+			
+		
+
+		
 
 	}
 

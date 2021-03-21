@@ -367,11 +367,11 @@ public class MyWallapopApplicationTests {
 		//entro en la vista de la lista de ofertas
 		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/ownList");
 		//recupero los elementos en la lista antes del add
-		int elemeBeforeAdd = PO_GestionarOfertasView.checkNumberOfOffersOnList(driver, null);
+		int elemeBeforeAdd = PO_GestionarOfertasView.checkNumberOfOffersOnList(driver, 0);
 		//retorno a home
 		driver.manage().deleteAllCookies();
 		navigateUrl(URL, "");
-		//accedo al usuario recien creado y a sus ofertas add
+		//accedo al usuario y a sus ofertas add
 		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/add");
 		//relleno el formulario
 		PO_GestionarOfertasView.fillAddOfferForm(driver, email, UUID.randomUUID().toString(), "Oferta", 10+"");
@@ -382,7 +382,7 @@ public class MyWallapopApplicationTests {
 		
 		
 		
-	}// TODO [Prueba17]
+	}
 
 	/**
 	 * Ir al formulario de alta de oferta, rellenarla con datos inválidos (campo
@@ -393,7 +393,7 @@ public class MyWallapopApplicationTests {
 	@Test
 	public void Prueba17() {
 
-		String email = "99999988F@prueba.com";
+		String email = "99999988F@wywallapop.com";
 		String password = "123456";
 		PO_GestionarOfertasView.accesoGestionOfertas(driver, email, password, "offer/add");
 		//relleno el formulario
@@ -401,9 +401,10 @@ public class MyWallapopApplicationTests {
 		// COmprobamos que da error de entrada
 		PO_View.getP();
 		// COmprobamos el error mirando que estemos en la misma pagina
-		PO_RegisterView.checkKey(driver, "addOffers.message", PO_Properties.getSPANISH());
+		SeleniumUtils.EsperaCargaPagina(driver, "free", "//*[@id=\"offer-add\"]", PO_View.getTimeout());
 		
-	}// TODO [Prueba18]
+		
+	}// TODO
 
 	/**
 	 * Mostrar el listado de ofertas para dicho usuario y comprobar que se muestran
@@ -412,7 +413,8 @@ public class MyWallapopApplicationTests {
 	@Test
 	public void Prueba18() {
 		//accedo al usuario y a sus ofertas list
-		PO_GestionarOfertasView.accesoGestionOfertas(driver, "99999988F@prueba.com", "123456", "offer/list");
+		PO_GestionarOfertasView.accesoGestionOfertas(driver, "99999988F@wywallapop.com", "123456", "offer/list");
+		PO_GestionarOfertasView.checkNumberOfOffersOnList(driver, 4);
 		
 
 	}// TODO [Prueba19]
